@@ -1,9 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
-.content {
-  display: flex;
+* {
+	margin: 0;
+	padding: 0;
+}
+html,
+body {
+  height: 100%;
+  background: #f2f3f7;
+}
+.wrapper {
+	display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  margin: 0 auto;
+  flex-grow: 1;
+}
+.container{
+  max-width: 1110px;
   margin: 32px auto;
   padding: 0 16px;
-  max-width: 960px;
-  flex-direction: column;
-  align-items: center;
+}
+.content {
+	flex: 1 0 auto;
+}
+.footer {
+	flex: 0 0 auto;
 }
