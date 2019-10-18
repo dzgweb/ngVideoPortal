@@ -1,0 +1,10 @@
+footer {
+  background: #414452;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .copyright {
+    font:14px/24px 'Source Sans Pro', sans-serif;
+    color: #c0c3ce;
+  }
+}

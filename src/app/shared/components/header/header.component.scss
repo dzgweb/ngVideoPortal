@@ -1,0 +1,15 @@
+.toolbar {
+  height: 64px;
+  margin: -8px;
+  display: flex;
+  align-items: center;
+  background-color: #414452;
+  color: white;
+  .logo {
+    img {
+      margin: 0 16px;
+      width: 137px;
+      height: 32px;
+    }
+  }  
+}
