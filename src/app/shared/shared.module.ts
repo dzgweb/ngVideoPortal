@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent, BreadcrumbsComponent, FooterComponent} from './components/';
+import { HeaderComponent, BreadcrumbsComponent, FooterComponent} from './components';
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent, BreadcrumbsComponent],

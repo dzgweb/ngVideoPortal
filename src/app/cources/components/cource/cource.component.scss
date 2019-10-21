@@ -1,0 +1,42 @@
+.course{
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 24px 0 rgba(18, 21, 35, 0.08);
+  background-color: #ffffff;
+  margin: 0 0 24px 0;
+  padding: 24px;
+  &-header{
+    display: flex;
+    justify-content: flex-start;  
+    margin: 0 0 7px 0; 
+    h2{
+      font: 600 24px 'Source Sans Pro', sans-serif;
+      line-height: 1.25;
+    }
+    .course-info{
+      margin: 8px 0 0 30px;;
+      display: flex;
+      &-duration{
+
+      }
+      &-date{
+
+      }
+    }
+  }
+  &-content{
+    display: flex;
+    .course-desc{
+      font: 14px 'Source Sans Pro', sans-serif;
+      line-height: 1.71;
+    }
+  }
+  .course-manager{
+    &-edit{
+
+    }
+    &-delete{
+      
+    }
+  }
+}

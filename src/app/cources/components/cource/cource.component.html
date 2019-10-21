@@ -1,1 +1,29 @@
-<p>cource works!</p>
+<div class="course">
+  <div class="course-header">
+    <div class="course-title">
+      <h2>{{cource.title}}</h2>
+    </div>
+    <div class="course-info">
+        <div class="course-info-duration">
+            {{cource.duration | date:"hh"}}
+        </div>
+        <div class="course-info-date">
+            {{cource.creationDate | date:'mediumDate'}}
+        </div>
+    </div>
+
+  </div>
+  <div class="course-content">
+    <div class="course-desc">
+      {{cource.description}}
+    </div>
+    <div class="course-manager">
+      <div class="course-manager-edit">
+        <button class="btn btn-sm" (click)="onEditCource()">Edit</button>
+      </div>
+      <div class="course-manager-delete">
+        <button class="btn btn-sm" (click)="onDeleteCource()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
