@@ -9,7 +9,6 @@ import { SharedModule } from './shared/shared.module';
 import { CourcesModule } from './cources/cources.module';
 import { UsersModule } from './users/users.module';
 
-
 @NgModule({
   declarations: [
     AppComponent

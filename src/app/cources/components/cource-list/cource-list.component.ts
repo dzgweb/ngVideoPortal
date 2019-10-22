@@ -29,4 +29,8 @@ export class CourceListComponent implements OnInit {
   onDeleteCourse() {
     console.log('onDeleteCourse');
   }
+
+  onCreateCourse() {
+    console.log('onCreateCourse');
+  }
 }

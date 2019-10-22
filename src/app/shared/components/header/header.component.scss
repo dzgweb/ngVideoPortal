@@ -4,6 +4,11 @@
   align-items: center;
   background-color: #414452;
   color: white;
+  .container{
+    .row {
+      margin-right: 0;
+    }
+  }
   .logo {
     img {
       margin: 0 16px;
@@ -11,4 +16,30 @@
       height: 32px;
     }
   }  
+  .auth{
+    display: flex;
+    &-user-login {
+      display: flex;
+      align-items:center;
+      &::before{
+        content: '';
+        background: url(/assets/ic-user.svg);
+        width: 10px;
+        height: 12px;
+        margin-right: 8px;
+      }
+    }
+    &-log-off {
+      margin-left: 25px;
+      display: flex;
+      align-items:center;
+      &::before{
+        content: '';
+        background: url(/assets/ic-exit.svg);
+        width: 16px;
+        height: 12px;
+        margin-right: 9px;
+      }
+    }
+  }
 }
