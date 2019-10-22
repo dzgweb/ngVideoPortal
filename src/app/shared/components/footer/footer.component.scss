@@ -4,8 +4,12 @@ footer {
   align-items: center;
   justify-content: space-between;
   height: 62px;
+  .container{
+    margin: 0 auto;
+  }
   .copyright {
     font:14px/24px 'Source Sans Pro', sans-serif;
     color: #c0c3ce;
+    float: right;
   }
 }

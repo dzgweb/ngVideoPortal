@@ -1,8 +1,13 @@
 <div class="toolbar" role="banner">
-  <div class="logo">
-      <img src="/assets/logo.svg" alt="Video Course" width="32" />
-  </div>
-  <div class="auth">
-    
+  <div class="container">
+    <div class="row justify-content-between">
+        <div class="logo">
+            <img src="/assets/logo.svg" alt="Video Course" width="32" />
+        </div>
+        <div class="auth">
+          <div class="">User login</div>
+          <a (click)="onLogin($event)">Log off</a>
+        </div>
+    </div>
   </div>
 </div>
