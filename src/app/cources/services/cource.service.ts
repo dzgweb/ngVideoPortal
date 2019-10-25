@@ -6,7 +6,7 @@ import { filter, catchError, map } from 'rxjs/operators';
 
 import { Course } from '../models';
 
-const cources = [
+const courses = [
   {
     id: 1,
     title: 'Video Course 1. Name tag',
@@ -39,8 +39,7 @@ const cources = [
   },
 ];
 
-const courcesObservable: Observable<Array<Course>> = of(cources);
-
+const coursesObservable: Observable<Array<Course>> = of(courses);
 
 @Injectable({
   providedIn: 'root'
@@ -49,13 +48,37 @@ export class CourseService {
   constructor() { }
 
   getCourses(): Observable<Course[]> {
-    return courcesObservable;
+    return coursesObservable;
   }
 
   getCourse(id: number | string): Observable<Course> {
     return this.getCourses().pipe(
-      map((courcesList: Array<Course>) => courcesList.find(cource => cource.id === +id)),
+      map((coursesList: Array<Course>) => coursesList.find(course => course.id === +id)),
       catchError(err => throwError('Error in getUser method'))
     );
+  }
+
+  addCourse(): void {
+    const lastId = courses[courses.length - 1].id;
+    courses.push(new Course(lastId + 1, 'new course', (new Date()).toString(), 0, 'Learn about where you can ' +
+      // tslint:disable-next-line:max-line-length
+      'find course descriptions, what information they include, how they work, and details about various components of a course description.' +
+      ' Course descriptions report information about a university or college\'s classes.' ));
+  }
+
+  editCourse(course: Course): void {
+    const i = courses.findIndex(item => item.id === course.id);
+
+    if (i > -1) {
+      courses.splice(i, 1, course);
+    }
+  }
+
+  deleteCourse(course: Course): void {
+    const i = courses.findIndex(item => item.id === course.id);
+
+    if (i > -1) {
+      courses.splice(i, 1);
+    }
   }
 }

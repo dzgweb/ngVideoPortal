@@ -1,11 +1,12 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy} from '@angular/core';
 
 import { Course } from '../../models';
 
 @Component({
   selector: 'app-cource',
   templateUrl: './cource.component.html',
-  styleUrls: ['./cource.component.scss']
+  styleUrls: ['./cource.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourceComponent implements OnInit {
   @Input() cource: Course;
@@ -18,11 +19,11 @@ export class CourceComponent implements OnInit {
   ngOnInit() {
   }
 
-  onEditCource() {
+  onEditCourse() {
     this.editCourse.emit(this.cource);
   }
 
-  onDeleteCource() {
+  onDeleteCourse() {
     this.deleteCourse.emit(this.cource);
   }
 

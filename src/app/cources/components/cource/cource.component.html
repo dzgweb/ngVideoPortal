@@ -5,7 +5,7 @@
     </div>
     <div class="course-info">
         <div class="course-info-duration">
-            {{cource.duration | date:"hh"}}
+            {{cource.duration}}
         </div>
         <div class="course-info-date">
             {{cource.creationDate | date:'mediumDate'}}
@@ -18,8 +18,8 @@
       {{cource.description}}
     </div>
     <div class="course-manager">
-      <button class="course-manager-edit btn btn-sm" (click)="onEditCource()">Edit</button>
-      <button class="course-manager-delete btn btn-sm" (click)="onDeleteCource()">Delete</button>
+      <button class="course-manager-edit btn btn-sm" (click)="onEditCourse()">Edit</button>
+      <button class="course-manager-delete btn btn-sm" (click)="onDeleteCourse()">Delete</button>
     </div>
   </div>
 </div>
