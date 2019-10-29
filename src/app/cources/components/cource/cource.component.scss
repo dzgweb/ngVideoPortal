@@ -17,10 +17,10 @@
       margin: 8px 0 0 30px;;
       display: flex;
       &-duration{
-
+        margin: 0 15px 0 0;
       }
       &-date{
-
+        margin: 0 15px 0 0;
       }
     }
   }
@@ -32,11 +32,28 @@
     }
   }
   .course-manager{
-    &-edit{
+    width: 175px;
+    display: flex;
+    justify-content:space-between;
 
+    &-edit{
+      width: 75px;
+      height: 24px;
+      background: #30b6dd;
+      border-radius: 3px;
+      color:#fff;
+      border: none;
+      cursor: pointer;
+      margin-right: 12px;
     }
     &-delete{
-      
+      width: 86px;
+      height: 24px;
+      background: #30b6dd;
+      border-radius: 3px;
+      color:#fff;
+      border: none;
+      cursor: pointer;
     }
   }
 }

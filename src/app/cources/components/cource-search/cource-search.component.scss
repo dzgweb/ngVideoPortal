@@ -1,0 +1,36 @@
+.container{
+  margin-top: 24px;
+  margin-bottom: 0;
+}
+.search-form{
+  
+  input {
+    width: 360px;
+    height: 48px;
+    border-radius: 3px;
+    border: 1px solid #d9dbe3;
+    background:url(/assets/ic-search.svg) no-repeat 12px center #fff;
+    padding-left: 42px;
+    &::-webkit-input-placeholder { 
+      color: #7d7c7c;
+    }    
+    &:-ms-input-placeholder { 
+      color: #7d7c7c;
+    }    
+    &::placeholder {
+      color: #7d7c7c;
+    }
+  }
+  button{
+    width: 100px;
+    height: 48px;
+    border-radius: 3px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    background: #9bc837;
+    border: none;
+    margin-left: 6px;
+    cursor: pointer;
+  }
+}

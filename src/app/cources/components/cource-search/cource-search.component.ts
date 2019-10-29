@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cource-search.component.scss']
 })
 export class CourceSearchComponent implements OnInit {
+  public searchText: string;
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  onSearch() {
+    if (this.searchText) {
+      console.log(this.searchText);
+    }
+  }
 }

@@ -1,1 +1,14 @@
-<p>cource-search works!</p>
+<div class="container">
+  <form class="search-form"
+    #searchForm="ngForm" 
+    (ngSubmit)="onSearch(searchForm)">
+    <input 
+      type="text" 
+      placeholder="Text to search"
+      [(ngModel)]="searchText" 
+      name="firstName" 
+    >
+    <button type="submit">Search</button>  
+    <!-- <button type="submit" (click)="onSearch()" >Search</button> -->
+  </form>
+</div>

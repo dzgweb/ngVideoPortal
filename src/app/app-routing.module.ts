@@ -6,7 +6,12 @@ import { CourceListComponent, CourceFormComponent, CourceSearchComponent } from 
 const routes: Routes = [
   {
     path: '',
-    component: CourceListComponent
+    redirectTo: '/courses',
+    pathMatch: 'full'
+  },
+  {
+    path: 'courses',
+    component:  CourceListComponent
   }
 ];
 

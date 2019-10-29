@@ -22,11 +22,21 @@ export class CourceListComponent implements OnInit {
     this.courses = this.courseService.getCourses();
   }
 
-  onEditCourse() {
-    console.log('onEditCourse');
+  onEditCourse(course: Course): void {
+    console.log(`onEditCourse  ${course.id}`);
   }
 
-  onDeleteCourse() {
-    console.log('onDeleteCourse');
+  onDeleteCourse(course: Course): void {
+    console.log(`onDeleteCourse ${course.id}`);
+    this.courseService.deleteCourse(course);
+  }
+
+  onAddCourse() {
+    console.log(`onCreateCourse`);
+    this.courseService.addCourse();
+  }
+
+  onLoadMore() {
+    console.log('onLoadMore');
   }
 }
