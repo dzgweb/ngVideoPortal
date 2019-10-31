@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-cource-search',
-  templateUrl: './cource-search.component.html',
-  styleUrls: ['./cource-search.component.scss']
+  selector: 'app-course-search',
+  templateUrl: './course-search.component.html',
+  styleUrls: ['./course-search.component.scss']
 })
-export class CourceSearchComponent implements OnInit {
+export class CourseSearchComponent implements OnInit {
   public searchText: string;
 
   constructor() { }

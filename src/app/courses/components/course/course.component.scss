@@ -2,7 +2,6 @@
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 1px 24px 0 rgba(18, 21, 35, 0.08);
-  background-color: #ffffff;
   margin: 0 0 24px 0;
   padding: 24px;
   &-header{
@@ -18,9 +17,13 @@
       display: flex;
       &-duration{
         margin: 0 15px 0 0;
+        color: #b9bdce;
+        font: 12px 'Source Sans Pro', sans-serif;
       }
       &-date{
         margin: 0 15px 0 0;
+        color: #b9bdce;
+        font: 12px 'Source Sans Pro', sans-serif;
       }
     }
   }
@@ -29,6 +32,7 @@
     .course-desc{
       font: 14px 'Source Sans Pro', sans-serif;
       line-height: 1.71;
+      color: #525462;
     }
   }
   .course-manager{
@@ -45,6 +49,7 @@
       border: none;
       cursor: pointer;
       margin-right: 12px;
+      font: 600 12px 'Source Sans Pro', sans-serif;
     }
     &-delete{
       width: 86px;
@@ -54,6 +59,7 @@
       color:#fff;
       border: none;
       cursor: pointer;
+      font: 600 12px 'Source Sans Pro', sans-serif;
     }
   }
 }

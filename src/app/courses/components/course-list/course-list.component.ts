@@ -4,15 +4,16 @@ import { Observable } from 'rxjs';
 
 import { Course } from '../../models';
 import { CourseService } from '../../services';
-
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 @Component({
-  selector: 'app-cource-list',
-  templateUrl: './cource-list.component.html',
-  styleUrls: ['./cource-list.component.scss']
+  selector: 'app-course-list',
+  templateUrl: './course-list.component.html',
+  styleUrls: ['./course-list.component.scss']
 })
-export class CourceListComponent implements OnInit {
+export class CourseListComponent implements OnInit {
   public courses: Observable<Course[]>;
+  public faPlus = faPlus;
 
   constructor(
     private courseService: CourseService
