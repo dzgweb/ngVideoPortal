@@ -11,6 +11,10 @@
   cursor: pointer;
   float: right;
   margin-bottom: 15px;
+  font: 500 14px 'Source Sans Pro', sans-serif;
+  .ng-fa-icon{
+    margin-right: 8px;
+  }
 }
 .course-list{
   width: 100%;
