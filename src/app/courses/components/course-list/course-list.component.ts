@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { Course } from '../../models';
 import { CourseService } from '../../services';
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-course-list',
