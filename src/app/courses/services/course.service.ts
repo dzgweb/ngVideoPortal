@@ -54,7 +54,7 @@ export class CourseService {
   getCourse(id: number | string): Observable<Course> {
     return this.getCourses().pipe(
       map((coursesList: Array<Course>) => coursesList.find(course => course.id === +id)),
-      catchError(err => throwError('Error in getUser method'))
+      catchError(err => throwError('Error in getCourse method'))
     );
   }
 

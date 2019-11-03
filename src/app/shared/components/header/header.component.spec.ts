@@ -22,4 +22,12 @@ describe('HeaderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should call Login', () => {
+    const spy = spyOn(console, 'log');
+    component.onLogin();
+
+    expect(spy).toHaveBeenCalled();
+  });
+
 });

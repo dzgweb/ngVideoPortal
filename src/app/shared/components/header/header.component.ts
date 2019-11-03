@@ -12,8 +12,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
-  onLogin(event: any): void {
-    console.log('User click Log off')
+  onLogin(): void {
+    console.log('User click Log off');
   }
 
 }

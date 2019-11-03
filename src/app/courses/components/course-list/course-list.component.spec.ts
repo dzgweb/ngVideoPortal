@@ -94,40 +94,12 @@ describe('CourseListComponent with Dependency CourseService', () => {
   let component: CourseListComponent;
   let fixture: ComponentFixture<CourseListComponent>;
   let courseService: CourseService;
-  const courseServiceStub: Partial<CourseService> = {
-    getCourses: () => of([{
-      id: 1,
-      title: 'Video Course 1. Name tag',
-      creationDate: '12.09.2018',
-      duration: 88,
-      description: `Learn about where you can find course descriptions, what information they include, how they work, and details
-       about various components of a course description. Course descriptions report information about a university or college's
-       classes. They're published both in course catalogs that outline degree requirements and in course schedules that contain
-       descriptions for all courses offered during a particular semester.`
-    },
-    {
-      id: 2,
-      title: 'Video Course 2. Name tag',
-      creationDate: '11.10.2018',
-      duration: 77,
-      description: `Learn about where you can find course descriptions, what information they include, how they work, and details
-      about various components of a course description. Course descriptions report information about a university or college's
-      classes. They're published both in course catalogs that outline degree requirements and in course schedules that contain
-      descriptions for all courses offered during a particular semester.`
-    }]),
-    getCourse: () => of({
-      id: 1,
-      title: 'Video Course 1. Name tag',
-      creationDate: '12.09.2018',
-      duration: 88,
-      description: `Learn about where you can find course descriptions, what information they include, how they work, and details
-       about various components of a course description. Course descriptions report information about a university or college's
-       classes. They're published both in course catalogs that outline degree requirements and in course schedules that contain
-       descriptions for all courses offered during a particular semester.`
-    }),
+  const courseServiceStub: Partial<any> = {
+    getCourses: () => of([{id: 1}, {id: 2}, {id: 3}]),
+    getCourse: (course: Course) => `Course № ${course.id}`,
     addCourse: () => `new course was added`,
     editCourse: (course: Course) => `course ${course.id} was edited`,
-    deleteCourse: (course: Course) => `course ${course.id} was deleted`,
+    deleteCourse: (course: Course) => `course ${course.id} was deleted`
   };
 
   beforeEach(async(() => {
@@ -151,10 +123,12 @@ describe('CourseListComponent with Dependency CourseService', () => {
     const getDataSpy = spyOn(courseService, 'getCourses');
     component.ngOnInit();
     expect(getDataSpy).toHaveBeenCalled();
-
-    fixture.detectChanges();
-    
-    expect(component.courses).toEqual()
-
   });
+
+  it('should call courseService addCourse', () => {
+    const addCourseSpy = spyOn(courseService, 'addCourse');
+    component.onAddCourse();
+    expect(addCourseSpy).toHaveBeenCalled();
+  });
+
 });

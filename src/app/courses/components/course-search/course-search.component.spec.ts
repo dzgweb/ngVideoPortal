@@ -24,4 +24,16 @@ describe('CourseSearchComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should call Search', () => {
+    const spy = spyOn(console, 'log');
+    component.searchText = 'search text';
+    component.onSearch();
+
+    expect(spy).toHaveBeenCalled();
+
+    component.searchText = '';
+    component.onSearch();
+    expect(spy).toHaveBeenCalled();
+  });
 });
