@@ -2,8 +2,11 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
+import { of } from 'rxjs';
+
 import { Course } from '../../models';
 import { CourseListComponent } from './course-list.component';
+import { CourseService } from '../../services';
 
 describe('CourseListComponent', () => {
   let component: CourseListComponent;
@@ -84,5 +87,74 @@ describe('CourseListComponent', () => {
     component.onLoadMore();
 
     expect(loadMoreSpy).toHaveBeenCalled();
+  });
+});
+
+describe('CourseListComponent with Dependency CourseService', () => {
+  let component: CourseListComponent;
+  let fixture: ComponentFixture<CourseListComponent>;
+  let courseService: CourseService;
+  const courseServiceStub: Partial<CourseService> = {
+    getCourses: () => of([{
+      id: 1,
+      title: 'Video Course 1. Name tag',
+      creationDate: '12.09.2018',
+      duration: 88,
+      description: `Learn about where you can find course descriptions, what information they include, how they work, and details
+       about various components of a course description. Course descriptions report information about a university or college's
+       classes. They're published both in course catalogs that outline degree requirements and in course schedules that contain
+       descriptions for all courses offered during a particular semester.`
+    },
+    {
+      id: 2,
+      title: 'Video Course 2. Name tag',
+      creationDate: '11.10.2018',
+      duration: 77,
+      description: `Learn about where you can find course descriptions, what information they include, how they work, and details
+      about various components of a course description. Course descriptions report information about a university or college's
+      classes. They're published both in course catalogs that outline degree requirements and in course schedules that contain
+      descriptions for all courses offered during a particular semester.`
+    }]),
+    getCourse: () => of({
+      id: 1,
+      title: 'Video Course 1. Name tag',
+      creationDate: '12.09.2018',
+      duration: 88,
+      description: `Learn about where you can find course descriptions, what information they include, how they work, and details
+       about various components of a course description. Course descriptions report information about a university or college's
+       classes. They're published both in course catalogs that outline degree requirements and in course schedules that contain
+       descriptions for all courses offered during a particular semester.`
+    }),
+    addCourse: () => `new course was added`,
+    editCourse: (course: Course) => `course ${course.id} was edited`,
+    deleteCourse: (course: Course) => `course ${course.id} was deleted`,
+  };
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ CourseListComponent ],
+      providers: [{ provide: CourseService, useValue: courseServiceStub }],
+      schemas: [
+        NO_ERRORS_SCHEMA
+      ]
+    }).compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(CourseListComponent);
+    courseService = TestBed.get(CourseService);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should call courseService', () => {
+    const getDataSpy = spyOn(courseService, 'getCourses');
+    component.ngOnInit();
+    expect(getDataSpy).toHaveBeenCalled();
+
+    fixture.detectChanges();
+    
+    expect(component.courses).toEqual()
+
   });
 });
