@@ -23,6 +23,11 @@ export class CourseListComponent implements OnInit {
     this.courses = this.courseService.getCourses();
   }
 
+  onAddCourse() {
+    console.log(`onCreateCourse`);
+    this.courseService.addCourse();
+  }
+
   onEditCourse(course: Course): void {
     console.log(`onEditCourse  ${course.id}`);
   }
@@ -30,11 +35,6 @@ export class CourseListComponent implements OnInit {
   onDeleteCourse(course: Course): void {
     console.log(`onDeleteCourse ${course.id}`);
     this.courseService.deleteCourse(course);
-  }
-
-  onAddCourse() {
-    console.log(`onCreateCourse`);
-    this.courseService.addCourse();
   }
 
   onLoadMore() {

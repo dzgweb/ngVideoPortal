@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 import { CourseComponent } from './course.component';
 import { Course } from '../../models';
@@ -37,5 +37,37 @@ describe('CourseComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should emit editCourse', () => {
+    const spy = spyOn(console, 'log');
+    component.onEditCourse();
+
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should log message when calling onLoadMore', () => {
+    const spy = spyOn(console, 'log');
+    component.onDeleteCourse();
+
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should emit editCourse once clicked', () => {
+    const spy = spyOn(component, 'onEditCourse');
+
+    fixture.debugElement.query(By.css('.course-manager-edit')).triggerEventHandler('click', null);
+    fixture.detectChanges();
+
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should emit DeleteCourse once clicked', () => {
+    const spy = spyOn(component, 'onDeleteCourse');
+
+    fixture.debugElement.query(By.css('.course-manager-delete')).triggerEventHandler('click', null);
+    fixture.detectChanges();
+
+    expect(spy).toHaveBeenCalled();
   });
 });

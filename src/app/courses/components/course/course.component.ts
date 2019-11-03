@@ -26,10 +26,12 @@ export class CourseComponent implements OnInit {
   }
 
   onEditCourse() {
+    console.log('onEditCourse');
     this.editCourse.emit(this.course);
   }
 
   onDeleteCourse() {
+    console.log('onDeleteCourse');
     this.deleteCourse.emit(this.course);
   }
 
