@@ -70,4 +70,27 @@ describe('CourseComponent', () => {
 
     expect(spy).toHaveBeenCalled();
   });
+
+});
+
+describe('CourseComponent class tests', () => {
+  const comp = new CourseComponent();
+  const course: Course = {
+    id: 1,
+    title: 'Video Course 1. Name tag',
+    creationDate: '12.09.2018',
+    duration: 88,
+    description: `Test desc`
+  };
+  comp.course = course;
+
+  it('raises the editCourse event when clicked onEditCourse', () => {
+    comp.editCourse.subscribe((selectedCourse: Course) => expect(selectedCourse).toBe(course));
+    comp.onEditCourse();
+  });
+
+  it('raises the deleteCourse event when clicked onDeleteCourse', () => {
+    comp.deleteCourse.subscribe((selectedCourse: Course) => expect(selectedCourse).toBe(course));
+    comp.onDeleteCourse();
+  });
 });
