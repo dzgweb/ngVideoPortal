@@ -1,0 +1,24 @@
+<div class="course">
+  <div class="course-content">
+    <div class="course-header">
+      <div class="course-title">
+        <h2>{{course.title}}</h2>
+      </div>
+      <div class="course-info">
+          <div class="course-info-duration">
+            <fa-icon [icon]="faClock"></fa-icon> {{course.duration}}
+          </div>
+          <div class="course-info-date">
+            <fa-icon [icon]="faCalendarAlt"></fa-icon> {{course.creationDate | date:'mediumDate'}}
+          </div>
+      </div>
+    </div>
+    <div class="course-desc">
+      {{course.description}}
+    </div>
+  </div>
+  <div class="course-manager">
+    <button class="course-manager-edit btn btn-sm" (click)="onEditCourse()"><fa-icon [icon]="faPen"></fa-icon> Edit</button>
+    <button class="course-manager-delete btn btn-sm" (click)="onDeleteCourse()"><fa-icon [icon]="faTrashAlt"></fa-icon> Delete</button>
+  </div>
+</div>

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { CourceListComponent, CourceFormComponent, CourceSearchComponent } from './cources';
+import { CourseListComponent, CourseFormComponent, CourseSearchComponent } from './courses';
 
 const routes: Routes = [
   {
@@ -11,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: 'courses',
-    component:  CourceListComponent
+    component:  CourseListComponent
   }
 ];
 
