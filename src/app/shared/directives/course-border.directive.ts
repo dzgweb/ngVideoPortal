@@ -5,7 +5,7 @@ import { Course } from '../../courses';
 @Directive({
   selector: '[appCourseBorder]'
 })
-export class CourseBorderDirective implements OnInit{
+export class CourseBorderDirective implements OnInit {
   @Input('appCourseBorder') course: Course;
 
   private currentDate: Date = new Date(new Date().toLocaleDateString());

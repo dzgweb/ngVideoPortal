@@ -46,7 +46,7 @@ const courses = [
     about various components of a course description. Course descriptions report information about a university or college's
     classes. They're published both in course catalogs that outline degree requirements and in course schedules that contain
     descriptions for all courses offered during a particular semester.`
-  },
+  }
 ];
 
 const coursesObservable: Observable<Array<Course>> = of(courses);
