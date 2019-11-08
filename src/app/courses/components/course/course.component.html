@@ -9,7 +9,7 @@
       </div>
       <div class="course-info">
           <div class="course-info-duration">
-            <fa-icon [icon]="faClock"></fa-icon> {{course.duration}}
+            <fa-icon [icon]="faClock"></fa-icon> {{course.duration | duration}}
           </div>
           <div class="course-info-date">
             <fa-icon [icon]="faCalendarAlt"></fa-icon> {{course.creationDate | date:'mediumDate'}}

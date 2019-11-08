@@ -11,7 +11,7 @@ const courses = [
     id: 1,
     title: 'Video Course 1. Name tag',
     creationDate: '12.12.2019',
-    duration: 88,
+    duration: 188,
     description: `Learn about where you can find course descriptions, what information they include, how they work, and details
      about various components of a course description. Course descriptions report information about a university or college's
      classes. They're published both in course catalogs that outline degree requirements and in course schedules that contain
@@ -33,7 +33,7 @@ const courses = [
     id: 3,
     title: 'Video Course 3. Name tag',
     creationDate: '11.05.2019',
-    duration: 105,
+    duration: 125,
     description: `Learn about where you can find course descriptions, what information they include, how they work, and details
     about various components of a course description. Course descriptions report information about a university or college's
     classes. They're published both in course catalogs that outline degree requirements and in course schedules that contain
@@ -44,7 +44,7 @@ const courses = [
     id: 4,
     title: 'Video Course 4. Name tag',
     creationDate: '05.11.2019',
-    duration: 65,
+    duration: 55,
     description: `Learn about where you can find course descriptions, what information they include, how they work, and details
     about various components of a course description. Course descriptions report information about a university or college's
     classes. They're published both in course catalogs that outline degree requirements and in course schedules that contain

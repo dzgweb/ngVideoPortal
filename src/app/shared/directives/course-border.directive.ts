@@ -21,7 +21,6 @@ export class CourseBorderDirective implements OnInit {
   }
 
   private setBorder(): void {
-    console.log(this.creationDate < this.withinTwoWeeks);
     if (this.creationDate < this.currentDate && this.creationDate >= this.withinTwoWeeks) {
       this.render.setStyle(this.el.nativeElement, 'border', '1px solid #9bc837');
     }
@@ -29,5 +28,4 @@ export class CourseBorderDirective implements OnInit {
       this.render.setStyle(this.el.nativeElement, 'border', '1px solid #30b6dd');
     }
   }
-
 }
