@@ -1,9 +1,11 @@
 <div class="course" 
-  [appCourseBorder]="course">
+  [appCourseBorder]="course"
+  [ngClass]="{'top-rated' : course.topRated}">
   <div class="course-content">
     <div class="course-header">
       <div class="course-title">
-        <h2>{{course.title}}</h2>
+        <h2>{{course.title | uppercase}}</h2>
+        <fa-icon *ngIf=course.topRated [icon]="faStar"></fa-icon>
       </div>
       <div class="course-info">
           <div class="course-info-duration">
