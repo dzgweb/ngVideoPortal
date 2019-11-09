@@ -13,7 +13,6 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 })
 export class CourseListComponent implements OnInit {
   public courses$: Observable<Course[]>;
-  public courses: Array<Course[]>;
   public faPlus = faPlus;
 
   constructor(
