@@ -12,7 +12,8 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./course-list.component.scss']
 })
 export class CourseListComponent implements OnInit {
-  public courses: Observable<Course[]>;
+  public courses$: Observable<Course[]>;
+  public courses: Array<Course[]>;
   public faPlus = faPlus;
 
   constructor(
@@ -20,7 +21,7 @@ export class CourseListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.courses = this.courseService.getCourses();
+    this.courses$ = this.courseService.getCourses();
   }
 
   onAddCourse() {
