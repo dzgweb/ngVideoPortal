@@ -4,6 +4,7 @@ import { HeaderComponent, BreadcrumbsComponent, FooterComponent} from './compone
 import { CourseBorderDirective } from './directives/course-border.directive';
 import { OrderbyPipe } from './pipes/orderby.pipe';
 import { DurationPipe } from './pipes/duration.pipe';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -12,8 +13,10 @@ import { DurationPipe } from './pipes/duration.pipe';
     BreadcrumbsComponent,
     CourseBorderDirective,
     OrderbyPipe,
-    DurationPipe
+    DurationPipe,
+    FilterPipe
   ],
+  providers: [FilterPipe],
   imports: [
     CommonModule
   ],
@@ -23,7 +26,8 @@ import { DurationPipe } from './pipes/duration.pipe';
     BreadcrumbsComponent,
     CourseBorderDirective,
     OrderbyPipe,
-    DurationPipe
+    DurationPipe,
+    FilterPipe
   ]
 })
 export class SharedModule { }

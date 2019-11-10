@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 // RxJs
-import { Observable, of, throwError } from 'rxjs';
+import { Observable, of, throwError, BehaviorSubject } from 'rxjs';
 import { filter, catchError, map } from 'rxjs/operators';
 
 import { Course } from '../models';
@@ -59,6 +59,9 @@ const coursesObservable: Observable<Array<Course>> = of(courses);
   providedIn: 'root'
 })
 export class CourseService {
+  filterText: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  public filterText$ = this.filterText.asObservable();
+
   constructor() { }
 
   getCourses(): Observable<Course[]> {
@@ -98,5 +101,9 @@ export class CourseService {
     if (i > -1) {
       courses.splice(i, 1);
     }
+  }
+
+  getFilterText(): BehaviorSubject<string> {
+    return this.filterText;
   }
 }

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { Observable, of, from } from 'rxjs';
 
 import { Course } from '../../models';
 import { CourseService } from '../../services';
+import { FilterPipe } from '../../../shared/';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -13,14 +14,26 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 })
 export class CourseListComponent implements OnInit {
   public courses$: Observable<Course[]>;
+  public courses: Course[];
   public faPlus = faPlus;
+  public filterText: string;
 
   constructor(
-    private courseService: CourseService
+    private courseService: CourseService,
+    private filterPipe: FilterPipe
   ) {}
 
   ngOnInit() {
     this.courses$ = this.courseService.getCourses();
+    this.courseService.getFilterText()
+      .subscribe(filterText => this.filterText = filterText);
+
+    // this.courseService.getCourses().subscribe(courses => this.courses = courses);
+    // this.getFilterCourses();
+  }
+
+  getFilterCourses(courses: Array<Course>, searchText: string) {
+    this.courses = this.filterPipe.transform(courses, searchText);
   }
 
   onAddCourse() {
