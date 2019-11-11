@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { Observable, of, from } from 'rxjs';
+import { Observable, of, from, Subscription } from 'rxjs';
 
 import { Course } from '../../models';
 import { CourseService } from '../../services';
@@ -12,11 +12,13 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './course-list.component.html',
   styleUrls: ['./course-list.component.scss']
 })
-export class CourseListComponent implements OnInit {
+export class CourseListComponent implements OnInit, OnDestroy {
   public courses$: Observable<Course[]>;
   public courses: Course[];
   public faPlus = faPlus;
   public filterText: string;
+
+  private sub: Subscription;
 
   constructor(
     private courseService: CourseService,
@@ -25,11 +27,15 @@ export class CourseListComponent implements OnInit {
 
   ngOnInit() {
     this.courses$ = this.courseService.getCourses();
-    this.courseService.getFilterText()
+    this.sub = this.courseService.getFilterText()
       .subscribe(filterText => this.filterText = filterText);
 
     // this.courseService.getCourses().subscribe(courses => this.courses = courses);
     // this.getFilterCourses();
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
   getFilterCourses(courses: Array<Course>, searchText: string) {
