@@ -1,18 +1,30 @@
 .course{
   background: #fff;
+  border: 1px solid #fff;
   border-radius: 8px;
   box-shadow: 0 1px 24px 0 rgba(18, 21, 35, 0.08);
   margin: 0 0 24px 0;
   padding: 26px 25px 28px;
   display: flex;
   flex-direction: row;
+  &.top-rated{
+    background: #d5ffff;
+  }
   &-header{
     display: flex;
     justify-content: space-between;
     margin: 0 0 7px 0; 
+    .course-title{
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
     h2{
       font: 600 24px 'Source Sans Pro', sans-serif;
-      line-height: 1.25;
+      line-height: 1.25;      
+    }
+    fa-icon{
+      margin: 0 0 0 10px;
     }
     .course-info{
       margin: 8px 0 0 30px;;
