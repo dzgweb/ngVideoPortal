@@ -84,7 +84,7 @@ export class CourseService {
     courses.push(new Course(lastId + 1, 'new course', (new Date()).toString(), 0, 'Learn about where you can ' +
       // tslint:disable-next-line:max-line-length
       'find course descriptions, what information they include, how they work, and details about various components of a course description.' +
-      ' Course descriptions report information about a university or college\'s classes.' ));
+      ' Course descriptions report information about a university or college\'s classes.', false ));
   }
 
   editCourse(course: Course): void {

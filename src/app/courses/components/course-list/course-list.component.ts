@@ -14,7 +14,6 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 })
 export class CourseListComponent implements OnInit, OnDestroy {
   public courses$: Observable<Course[]>;
-  public courses: Course[];
   public faPlus = faPlus;
   public filterText: string;
 
@@ -26,20 +25,21 @@ export class CourseListComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.courses$ = this.courseService.getCourses();
+    this.courses$ = this.getFilterCourses(this.courseService.getCourses(), this.filterText);
+    // this.courses$ = this.courseService.getCourses();
     this.sub = this.courseService.getFilterText()
-      .subscribe(filterText => this.filterText = filterText);
-
-    // this.courseService.getCourses().subscribe(courses => this.courses = courses);
-    // this.getFilterCourses();
+      .subscribe(filterText => {
+        this.filterText = filterText;
+        this.courses$ = this.getFilterCourses(this.courseService.getCourses(), this.filterText);
+      });
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
 
-  getFilterCourses(courses: Array<Course>, searchText: string) {
-    this.courses = this.filterPipe.transform(courses, searchText);
+  getFilterCourses(courses$: Observable<Array<Course>>, searchText: string): Observable<Array<Course>> {
+    return this.filterPipe.transform(courses$, searchText);
   }
 
   onAddCourse() {
