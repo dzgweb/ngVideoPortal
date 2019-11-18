@@ -1,7 +1,9 @@
 import {Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy} from '@angular/core';
 
-import { Course } from '../../models';
 import { faClock, faCalendarAlt, faPen, faTrashAlt, faStar } from '@fortawesome/free-solid-svg-icons';
+
+import { Course } from '../../models';
+import { DeleteCourseDialogComponent } from '../../../material';
 
 @Component({
   selector: 'app-course',
@@ -20,6 +22,8 @@ export class CourseComponent implements OnInit {
   public faPen = faPen;
   public faTrashAlt = faTrashAlt;
   public faStar = faStar;
+
+
 
   constructor() { }
 
