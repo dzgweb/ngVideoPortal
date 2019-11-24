@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -19,6 +18,7 @@ import { MaterialModule } from './material/material.module';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     FontAwesomeModule,
     SharedModule,
     CoursesModule,
