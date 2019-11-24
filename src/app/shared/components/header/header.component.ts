@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Observable, Subscription } from 'rxjs';
 
@@ -9,12 +10,15 @@ import { User, AuthServiceService } from '../../../users';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, OnDestroy{
+export class HeaderComponent implements OnInit, OnDestroy {
   public user: User;
 
   private sub: Subscription;
 
-  constructor(private authServiceService: AuthServiceService) { }
+  constructor(
+    private authServiceService: AuthServiceService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.authServiceService.login();
@@ -32,6 +36,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
   onLogout() {
     console.log('User click Log off');
     this.authServiceService.logout();
+    this.router.navigate(['/login']);
   }
 
 

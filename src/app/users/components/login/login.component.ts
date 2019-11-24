@@ -18,13 +18,11 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  onLogin() {
+  onLogin(loginForm: NgForm) {
     // Form model
-    // console.log(loginForm.form);
+    console.log(loginForm.form);
     // Form value
-    // console.log(`Saved: ${JSON.stringify(loginForm.value)}`);
-
-    console.log(this.username, this.password);
+    console.log(`Login: ${JSON.stringify(loginForm.value)}`);
   }
 
 }

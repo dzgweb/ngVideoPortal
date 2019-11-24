@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-
 import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '../material/material.module';
 import { CourseComponent, CourseListComponent, CourseFormComponent, CourseSearchComponent } from './components';

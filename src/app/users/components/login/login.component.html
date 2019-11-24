@@ -1,7 +1,8 @@
 <div class="login">
   <h1>Login</h1>
   <form 
-      (ngSubmit)="onLogin()">
+      #loginForm="ngForm" 
+      (ngSubmit)="onLogin(loginForm)">
       <div class="form-group">
         <div class="form-group-label">
           <label for="inputEmail">Email:</label>
@@ -13,7 +14,8 @@
           id="inputEmail" 
           aria-describedby="emailHelp" 
           placeholder="Enter email"
-          name="username" 
+          name="username" 	
+          [(ngModel)]="username" 
         >         
       </div>
       <div class="form-group">
@@ -26,7 +28,8 @@
           class="form-control" 
           id="inputPassword" 
           placeholder="Enter Password"
-          name="password">
+          name="password"
+          [(ngModel)]="password" >
       </div>
       <div class="form-group form-group-btn">
         <a href="#" class="forgot-password">Forgot password?</a>
