@@ -23,8 +23,6 @@ export class CourseComponent implements OnInit {
   public faTrashAlt = faTrashAlt;
   public faStar = faStar;
 
-
-
   constructor() { }
 
   ngOnInit() {
@@ -36,8 +34,10 @@ export class CourseComponent implements OnInit {
   }
 
   onDeleteCourse() {
+    const wantDelete = confirm('Do you really want to delete this course?');
+    console.log('wantDelete', wantDelete);
     console.log('onDeleteCourse');
-    this.deleteCourse.emit(this.course);
+    if (wantDelete) { this.deleteCourse.emit(this.course); }
   }
 
 }

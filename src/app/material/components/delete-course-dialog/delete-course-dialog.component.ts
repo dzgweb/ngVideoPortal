@@ -10,11 +10,11 @@ export class DeleteCourseDialogComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    public dialogRef: MatDialogRef<DeleteCourseDialogComponent>,
+   // public dialogRef: MatDialogRef<DeleteCourseDialogComponent>,
   }
 
   onNoClick(): void {
-    this.dialogRef.close();
+    // this.dialogRef.close();
   }
 
 
