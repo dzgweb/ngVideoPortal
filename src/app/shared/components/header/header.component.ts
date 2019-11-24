@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { Observable, Subscription } from 'rxjs';
 
-import { User, AuthServiceService } from '../../../users';
+import { User, AuthService } from '../../../users';
 
 @Component({
   selector: 'app-header',
@@ -16,14 +16,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private sub: Subscription;
 
   constructor(
-    private authServiceService: AuthServiceService,
+    private authService: AuthService,
     private router: Router
   ) { }
 
   ngOnInit() {
-    this.authServiceService.login();
+    this.authService.login();
 
-    this.sub = this.authServiceService.getUserInfo()
+    this.sub = this.authService.getUserInfo()
       .subscribe(user => {
         this.user = user;
       });
@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   onLogout() {
     console.log('User click Log off');
-    this.authServiceService.logout();
+    this.authService.logout();
     this.router.navigate(['/login']);
   }
 

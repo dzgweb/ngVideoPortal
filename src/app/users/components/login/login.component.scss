@@ -5,7 +5,12 @@
     box-shadow: 0 1px 24px 0 rgba(18, 21, 35, 0.08);
     background-color: #fff;
     margin: auto;
-    padding: 23px;
+	padding: 23px;
+
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -149px 0 0 -184px;
     h1{
         color: #2c2f3c;
         font: 600 24px "Source Sans Pro", sans-serif;
