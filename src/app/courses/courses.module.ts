@@ -2,9 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { CourseComponent, CourseListComponent, CourseFormComponent, CourseSearchComponent } from './components';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 import { SharedModule } from '../shared/shared.module';
+import { MaterialModule } from '../material/material.module';
+import { CourseComponent, CourseListComponent, CourseFormComponent, CourseSearchComponent } from './components';
+
 
 @NgModule({
   declarations: [CourseListComponent, CourseComponent, CourseFormComponent, CourseSearchComponent],
@@ -12,7 +15,8 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     FormsModule,
     FontAwesomeModule,
-    SharedModule
+    SharedModule,
+    MaterialModule
   ],
   exports: [CourseSearchComponent]
 })

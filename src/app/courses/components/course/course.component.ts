@@ -1,7 +1,9 @@
 import {Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy} from '@angular/core';
 
-import { Course } from '../../models';
 import { faClock, faCalendarAlt, faPen, faTrashAlt, faStar } from '@fortawesome/free-solid-svg-icons';
+
+import { Course } from '../../models';
+import { DeleteCourseDialogComponent } from '../../../material';
 
 @Component({
   selector: 'app-course',
@@ -32,8 +34,10 @@ export class CourseComponent implements OnInit {
   }
 
   onDeleteCourse() {
+    const wantDelete = confirm('Do you really want to delete this course?');
+    console.log('wantDelete', wantDelete);
     console.log('onDeleteCourse');
-    this.deleteCourse.emit(this.course);
+    if (wantDelete) { this.deleteCourse.emit(this.course); }
   }
 
 }

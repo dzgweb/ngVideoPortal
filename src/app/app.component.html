@@ -1,7 +1,7 @@
 <div class="wrapper">
   <app-header></app-header>
-  <app-breadcrumbs></app-breadcrumbs>
-  <app-course-search></app-course-search>
+  <app-breadcrumbs *ngIf="authService.isAuthenticated"></app-breadcrumbs>
+  <app-course-search *ngIf="authService.isAuthenticated"></app-course-search>
   <div class="content">
     <router-outlet></router-outlet>
   </div>  

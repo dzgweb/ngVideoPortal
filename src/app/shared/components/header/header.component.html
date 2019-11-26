@@ -4,9 +4,9 @@
         <div class="logo">
             <img src="/assets/logo.svg" alt="Video Course" width="32" />
         </div>
-        <div class="auth">
-          <div class="auth-user-login">User login</div>
-          <a (click)="onLogin($event)" class="auth-log-off">Log off</a>
+        <div class="auth" *ngIf="authService.isAuthenticated">
+          <div class="auth-user-login" *ngIf="user">{{user.firstName}}</div>
+          <a (click)="onLogout($event)" class="auth-log-off">Log off</a>
         </div>
     </div>
   </div>
