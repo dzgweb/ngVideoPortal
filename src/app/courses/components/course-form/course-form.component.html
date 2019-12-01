@@ -1,5 +1,5 @@
 <div class="course-edit">
-    <h1>Login</h1>
+    <h1>New course</h1>
     <form 
         #courseForm="ngForm" 
         (ngSubmit)="save()">
@@ -29,41 +29,49 @@
             </textarea>
         </div>
         <div class="form-group">
-            <div class="form-group-label">
-                <label for="title">Duration:</label>
-                <div class="required">*required</div>
-            </div>
-            <input 
-                type="number" 
-                class="form-control" 
-                id="duration" 
-                placeholder="minutes"
-                name="title" 	
-                [(ngModel)]="course.duration"> 
-            <span>{{course.duration | duration }}</span>  
-        </div>
-        <div class="form-group">
-            <div class="form-group">
+            <div class="form-group-short">
                 <div class="form-group-label">
-                    <label for="title">Date:</label>
-                    <div class="required">*required</div>
-                </div>
+                        <label for="title">Duration:</label>
+                        <div class="required">*required</div>
+                    </div>
+                    <input 
+                        type="number" 
+                        class="form-control" 
+                        id="duration" 
+                        placeholder="minutes"
+                        name="title" 	
+                        [(ngModel)]="course.duration">    
             </div>
-            <input 
-                type="text"
-                class="form-control input-date" 
-                id="date"
-                placeholder="mm-dd-yyyy"
-                name="date" 	
-                [(ngModel)]="course.creationDate">  
+            <div class="duration-with-pipe">{{course.duration | duration }}</div>
         </div>
         <div class="form-group">
+            <div class="form-group-short">
+                <div class="form-group-label">
+                        <label for="title">Date:</label>
+                        <div class="required">*required</div>
+                    </div>
+                    <input 
+                        type="text"
+                        class="form-control input-date" 
+                        id="date"
+                        placeholder="mm-dd-yyyy"
+                        name="date" 	
+                        [(ngModel)]="course.creationDate">  
+            </div>
+        </div>
+        <div class="form-group form-group-authors">
             <div class="form-group">
                 <div class="form-group-label">
                     <label for="title">Authors:</label>
                     <div class="required">*required</div>
                 </div>
             </div>
+            <input 
+                type="text"
+                class="form-control" 
+                id="date"
+                placeholder="Start typing"
+                name="authors"> 
         </div>
         <div class="form-group form-group-btn">
             <button type="submit" class="btn btn-gray" (click)="cancel()">Cancel</button>
