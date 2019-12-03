@@ -6,6 +6,8 @@ import { OrderbyPipe } from './pipes/orderby.pipe';
 import { DurationPipe } from './pipes/duration.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
 
+import { RouterModule } from '@angular/router'; // TODO: move in layout
+
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -18,7 +20,8 @@ import { FilterPipe } from './pipes/filter.pipe';
   ],
   providers: [FilterPipe],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule  // TODO: move in layout
   ],
   exports: [
     HeaderComponent,

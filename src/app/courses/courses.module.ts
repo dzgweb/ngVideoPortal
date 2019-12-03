@@ -8,11 +8,13 @@ import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '../material/material.module';
 import { CourseComponent, CourseListComponent, CourseFormComponent, CourseSearchComponent } from './components';
 
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [CourseListComponent, CourseComponent, CourseFormComponent, CourseSearchComponent],
   imports: [
     CommonModule,
+    RouterModule,
     FormsModule,
     FontAwesomeModule,
     SharedModule,

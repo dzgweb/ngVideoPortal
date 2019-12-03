@@ -1,13 +1,15 @@
 <div class="toolbar" role="banner">
-  <div class="container">
-    <div class="row justify-content-between">
-        <div class="logo">
-            <img src="/assets/logo.svg" alt="Video Course" width="32" />
-        </div>
-        <div class="auth" *ngIf="authService.isAuthenticated">
-          <div class="auth-user-login" *ngIf="user">{{user.firstName}}</div>
-          <a (click)="onLogout($event)" class="auth-log-off">Log off</a>
-        </div>
-    </div>
-  </div>
+	<div class="container">
+		<div class="row justify-content-between">
+			<div class="logo">
+				<a routerLink="/courses">
+					<img src="/assets/logo.svg" alt="Video Course" width="32" />
+				</a>
+			</div>
+			<div class="auth" *ngIf="userIsAuth">
+				<div class="auth-user-login" *ngIf="user">{{user.firstName}}</div>
+				<a (click)="onLogout()" class="auth-log-off">Log off</a>
+			</div>
+		</div>
+	</div>
 </div>

@@ -10,6 +10,7 @@ import { SharedModule } from './shared/shared.module';
 import { CoursesModule } from './courses/courses.module';
 import { UsersModule } from './users/users.module';
 import { MaterialModule } from './material/material.module';
+import { LayoutModule } from './layout/layout.module';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { MaterialModule } from './material/material.module';
     UsersModule,
     AppRoutingModule,
     MaterialModule,
+    LayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

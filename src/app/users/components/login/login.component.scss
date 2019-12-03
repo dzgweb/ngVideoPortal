@@ -19,41 +19,7 @@
         letter-spacing: normal;
         margin: 0 0 23px 0;
     }
-    .form-group{
-        width: 100%;
-        margin: 12px 0;
-        &-label{
-            display: flex;
-            justify-content: space-between;
-            margin: 0 0 9px 0;
-            .required{
-                font:12px 'Source Sans Pro', sans-serif;
-                line-height: 1.5;
-                letter-spacing: 0.19px;
-                text-align: right;
-                color: #6c7283;
-            }
-        }
-        label{
-            color:#525462;
-            font:600 14px 'Source Sans Pro', sans-serif;
-            letter-spacing: 0.22px;
-        }
-        input{
-            width: 320px;
-            height: 36px;
-            border-radius: 3px;
-            border: solid 1px #d9dbe3;
-            background-color: #fff;
-            padding: 6px 12px;;
-        }
-        &.form-group-btn{
-            margin: 24px 0 0 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-    }
+ 
     .forgot-password{
         font: 12px 'Source Sans Pro', sans-serif;
         line-height: 1.5;

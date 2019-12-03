@@ -12,7 +12,7 @@ import { User, AuthService } from '../../../users';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   public user: User;
-
+  public userIsAuth: boolean;
   private sub: Subscription;
 
   constructor(
@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.authService.login();
+    this.userIsAuth = this.authService.isAuthenticated;
 
     this.sub = this.authService.getUserInfo()
       .subscribe(user => {
@@ -38,6 +38,5 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authService.logout();
     this.router.navigate(['/login']);
   }
-
 
 }

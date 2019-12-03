@@ -1,0 +1,51 @@
+.course-edit{
+    margin: 24px auto 280px;
+    width: 731px;
+    height: 603px;
+    border-radius: 8px;
+    box-shadow: 0 1px 24px 0 rgba(18, 21, 35, 0.08);
+    background-color: #ffffff;
+	padding: 24px 23px 23px 23px;
+    h1{
+        color: #2c2f3c;
+        font: 600 24px "Source Sans Pro", sans-serif;
+        font-stretch: normal;
+        line-height: 1.25;
+        letter-spacing: normal;
+        margin: 0 0 21px 0;
+    }
+    .duration-with-pipe{
+        float: left;
+        margin: 35px 0 0 15px;
+        color: #525462;
+        font: 14px "Source Sans Pro", sans-serif;
+    }
+}
+.form-group-authors{
+    margin:  0 0 24px 0;
+}
+.form-group.form-group-btn{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    .btn{
+        margin-left: 13px;
+        padding: 12px 20px;
+        border-radius: 3px;
+        font: 600 14px 'Source Sans Pro', sans-serif;
+        font-stretch: normal;
+        letter-spacing: -0.1px;
+        border: none;
+        cursor: pointer;
+        float: right;
+        &-gray{
+          color:#5b616f;
+          background:#f2f3f7;
+        }
+        &-green{
+          background: #9bc837;
+          color: #ffffff;
+        }
+      }
+}

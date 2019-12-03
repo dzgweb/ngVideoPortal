@@ -17,6 +17,14 @@ const routes: Routes = [
   {
     path: 'login',
     component:  LoginComponent
+  },
+  {
+    path: 'add',
+    component:  CourseFormComponent
+  },
+  {
+    path: 'edit/:taskID',
+    component: CourseFormComponent
   }
 ];
 

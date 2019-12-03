@@ -9,7 +9,7 @@ import { User } from '..';
   providedIn: 'root'
 })
 export class AuthService {
-  isAuthenticated = true;
+  public isAuthenticated = true;
   private token = '1234';
   private user: User = {id: 1, firstName: 'John', lastName: 'Smit'};
 
