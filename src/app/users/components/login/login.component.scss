@@ -1,43 +1,43 @@
-.login{
-    width: 368px;
-    height: 298px;
-    border-radius: 6px;
-    box-shadow: 0 1px 24px 0 rgba(18, 21, 35, 0.08);
-    background-color: #fff;
-    margin: auto;
-	padding: 23px;
+.login {
+  width: 368px;
+  height: 298px;
+  border-radius: 6px;
+  box-shadow: 0 1px 24px 0 rgba(18, 21, 35, 0.08);
+  background-color: #fff;
+  padding: 23px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -149px 0 0 -184px;
 
-	position: absolute;
-    top: 50%;
-    left: 50%;
-    margin: -149px 0 0 -184px;
-    h1{
-        color: #2c2f3c;
-        font: 600 24px "Source Sans Pro", sans-serif;
-        font-stretch: normal;
-        line-height: 1.25;
-        letter-spacing: normal;
-        margin: 0 0 23px 0;
-    }
- 
-    .forgot-password{
-        font: 12px 'Source Sans Pro', sans-serif;
-        line-height: 1.5;
-        letter-spacing: 0.19px;
-        color: #5681ee;
-        margin: 0 0 0 12px;
-    }
-    button{
-        width: 68px;
-        height: 36px;
-        border-radius: 3px;
-        color:#a8a9b4;
-        font: 600 14px 'Source Sans Pro', sans-serif;
-        font-stretch: normal;
-        line-height: 2.57;
-        letter-spacing: -0.1px;
-        border: none;
-        cursor: pointer;
-        float: right;
-    }
+  h1 {
+    color: #2c2f3c;
+    font: 600 24px "Source Sans Pro", sans-serif;
+    font-stretch: normal;
+    line-height: 1.25;
+    letter-spacing: normal;
+    margin: 0 0 23px 0;
+  }
+
+  .forgot-password {
+    font: 12px 'Source Sans Pro', sans-serif;
+    line-height: 1.5;
+    letter-spacing: 0.19px;
+    color: #5681ee;
+    margin: 0 0 0 12px;
+  }
+
+  button {
+    width: 68px;
+    height: 36px;
+    border-radius: 3px;
+    color: #a8a9b4;
+    font: 600 14px 'Source Sans Pro', sans-serif;
+    font-stretch: normal;
+    line-height: 2.57;
+    letter-spacing: -0.1px;
+    border: none;
+    cursor: pointer;
+    float: right;
+  }
 }

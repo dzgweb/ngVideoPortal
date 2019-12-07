@@ -4,6 +4,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { CourseListComponent, CourseFormComponent } from './courses';
 import { LoginComponent } from './users';
 
+import { PathNotFoundComponent } from './layout/components';
+import {AuthGuard} from './core';
+
 const routes: Routes = [
   {
     path: '',
@@ -12,6 +15,7 @@ const routes: Routes = [
   },
   {
     path: 'courses',
+    canActivate: [AuthGuard],
     component:  CourseListComponent
   },
   {
@@ -19,12 +23,18 @@ const routes: Routes = [
     component:  LoginComponent
   },
   {
-    path: 'add',
+    path: 'courses/new',
     component:  CourseFormComponent
   },
   {
-    path: 'edit/:taskID',
+    path: 'courses/:id',
     component: CourseFormComponent
+  },
+  {
+    // The router will match this route if the URL requested
+    // doesn't match any paths for routes defined in our configuration
+    path: '**',
+    component: PathNotFoundComponent
   }
 ];
 

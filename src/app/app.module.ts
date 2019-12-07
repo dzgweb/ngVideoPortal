@@ -24,9 +24,9 @@ import { LayoutModule } from './layout/layout.module';
     SharedModule,
     CoursesModule,
     UsersModule,
-    AppRoutingModule,
     MaterialModule,
     LayoutModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
