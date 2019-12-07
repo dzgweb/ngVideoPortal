@@ -22,16 +22,6 @@ export class AuthGuard implements CanActivate {
     return this.checkLogin(url);
   }
 
-  // private checkLogin(url: string): boolean {
-  //   if (this.authService.isAuthorized) {
-  //     return true;
-  //   }
-  //
-  //   const loginPageUrlTree = this.router.parseUrl('/courses');
-  //
-  //   return this.authService.isAuthorized ? true : loginPageUrlTree;
-  // }
-
   private checkLogin(url: string): boolean | UrlTree {
     if (this.authService.isAuthorized) { return true; }
 

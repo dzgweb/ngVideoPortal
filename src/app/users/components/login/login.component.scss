@@ -31,7 +31,8 @@
     width: 68px;
     height: 36px;
     border-radius: 3px;
-    color: #a8a9b4;
+    color: #fff;
+    background: #9bc837;
     font: 600 14px 'Source Sans Pro', sans-serif;
     font-stretch: normal;
     line-height: 2.57;
@@ -39,5 +40,11 @@
     border: none;
     cursor: pointer;
     float: right;
+    &:disabled,
+    &[disabled]{
+      background: #d9dbe3;
+      color: #a8a9b4;
+    }
+
   }
 }

@@ -5,7 +5,7 @@ import { CourseListComponent, CourseFormComponent } from './courses';
 import { LoginComponent } from './users';
 
 import { PathNotFoundComponent } from './layout/components';
-import {AuthGuard} from './core';
+import { AuthGuard } from './core';
 
 const routes: Routes = [
   {
@@ -24,15 +24,15 @@ const routes: Routes = [
   },
   {
     path: 'courses/new',
+    canActivate: [AuthGuard],
     component:  CourseFormComponent
   },
   {
     path: 'courses/:id',
+    canActivate: [AuthGuard],
     component: CourseFormComponent
   },
   {
-    // The router will match this route if the URL requested
-    // doesn't match any paths for routes defined in our configuration
     path: '**',
     component: PathNotFoundComponent
   }
