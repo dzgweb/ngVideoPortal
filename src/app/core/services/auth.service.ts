@@ -16,8 +16,8 @@ export class AuthService {
     return !!this.getUserInfo();
   }
 
-  login() {
-    localStorage.setItem(this.token, JSON.stringify(this.getUserInfo()));
+  login(userLogin: string): void {
+    localStorage.setItem(this.token, userLogin);
   }
 
   logout(): void {

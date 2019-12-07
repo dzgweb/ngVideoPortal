@@ -29,9 +29,17 @@ export class LoginComponent implements OnInit {
     // Form value
     console.log(`Login: ${JSON.stringify(loginForm.value)}`);
 
-    this.authService.login();
+    this.authService.login(JSON.stringify(loginForm.value));
 
-    this.router.navigate(['/courses']);
+    const redirectUrl = this.authService.redirectUrl;
+
+    if (redirectUrl) {
+      this.authService.redirectUrl = null;
+      this.router.navigateByUrl(redirectUrl);
+    } else {
+      this.router.navigate(['courses']);
+    }
+
   }
 
 }
