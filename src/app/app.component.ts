@@ -11,4 +11,8 @@ export class AppComponent {
   title = 'Video Courses';
 
   constructor(private authService: AuthService) { }
+
+  get userIsAuthorized(): boolean {
+    return this.authService.isAuthorized;
+  }
 }
