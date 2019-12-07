@@ -11,7 +11,7 @@ export class AuthService {
 
   constructor() { }
 
-  get isAuthenticated() {
+  get isAuthorized() {
     return !!this.getUserInfo();
   }
 
