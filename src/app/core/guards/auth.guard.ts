@@ -18,17 +18,28 @@ export class AuthGuard implements CanActivate {
 
     console.log('CanActivateGuard is called');
 
-    return checkLogin(state.url);
+    const { url } = state;
+    return this.checkLogin(url);
   }
 
-  private checkLogin(url: string): boolean {
-    if (this.authService.isAuthorized) {
-      return true;
-    }
+  // private checkLogin(url: string): boolean {
+  //   if (this.authService.isAuthorized) {
+  //     return true;
+  //   }
+  //
+  //   const loginPageUrlTree = this.router.parseUrl('/courses');
+  //
+  //   return this.authService.isAuthorized ? true : loginPageUrlTree;
+  // }
 
-    const loginPageUrlTree = this.router.parseUrl('/courses');
+  private checkLogin(url: string): boolean | UrlTree {
+    if (this.authService.isAuthorized) { return true; }
 
-    return this.authService.isAuthorized ? true : loginPageUrlTree;
+    // Store the attempted URL for redirecting
+    this.authService.redirectUrl = url;
+
+    // Navigate to the login page, return UrlTree
+    return this.router.parseUrl('/login');
   }
 
 }

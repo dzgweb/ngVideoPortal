@@ -8,6 +8,7 @@ import { User } from '../../users';
 export class AuthService {
   private token = '1234';
   private user: User = {id: 1, firstName: 'John', lastName: 'Smit'};
+  public redirectUrl: string;
 
   constructor() { }
 
