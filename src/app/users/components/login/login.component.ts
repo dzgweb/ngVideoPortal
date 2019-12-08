@@ -21,6 +21,9 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    if (this.authService.isAuthorized) {
+      this.router.navigate(['courses']);
+    }
   }
 
   onLogin(loginForm: NgForm) {

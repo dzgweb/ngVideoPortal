@@ -9,6 +9,7 @@ import { MaterialModule } from '../material/material.module';
 import { CourseComponent, CourseListComponent, CourseFormComponent, CourseSearchComponent } from './components';
 
 import { RouterModule } from '@angular/router';
+import { CoursesRoutingModule } from './courses-routing.module';
 
 @NgModule({
   declarations: [CourseListComponent, CourseComponent, CourseFormComponent, CourseSearchComponent],
@@ -18,7 +19,8 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     FontAwesomeModule,
     SharedModule,
-    MaterialModule
+    MaterialModule,
+    CoursesRoutingModule
   ],
   exports: [CourseSearchComponent]
 })

@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {Routes, RouterModule, PreloadAllModules} from '@angular/router';
 
-import { CourseListComponent, CourseFormComponent } from './courses';
+// import { CourseListComponent, CourseFormComponent } from './courses';
 import { LoginComponent } from './users';
 
 import { PathNotFoundComponent } from './layout/components';
-import { AuthGuard } from './core';
+// import { AuthGuard } from './core';
 
 const routes: Routes = [
   {
@@ -15,22 +15,11 @@ const routes: Routes = [
   },
   {
     path: 'courses',
-    canActivate: [AuthGuard],
-    component:  CourseListComponent
+    loadChildren: () => import('./courses/courses.module').then(m => m.CoursesModule)
   },
   {
     path: 'login',
     component:  LoginComponent
-  },
-  {
-    path: 'courses/new',
-    canActivate: [AuthGuard],
-    component:  CourseFormComponent
-  },
-  {
-    path: 'courses/:id',
-    canActivate: [AuthGuard],
-    component: CourseFormComponent
   },
   {
     path: '**',
@@ -39,7 +28,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    // router events
+    // enableTracing: true,
+    preloadingStrategy: PreloadAllModules
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

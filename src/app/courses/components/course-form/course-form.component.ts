@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Course } from '../../models';
+import { CourseService } from '../../services';
 
 @Component({
   selector: 'app-course-form',
@@ -10,17 +12,18 @@ import { Course } from '../../models';
 export class CourseFormComponent implements OnInit {
   public course: Course;
 
-  constructor() { }
+  constructor(private router: Router, private courseService: CourseService) { }
 
   ngOnInit() {
     this.course = new Course();
   }
 
   cancel() {
-    this.course = new Course();
+    this.router.navigate(['/login']);
   }
 
   save() {
     console.log(this.course);
+    this.courseService.addCourse();
   }
 }

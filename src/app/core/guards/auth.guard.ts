@@ -29,7 +29,9 @@ export class AuthGuard implements CanActivate {
     this.authService.redirectUrl = url;
 
     // Navigate to the login page, return UrlTree
-    return this.router.parseUrl('/login');
+    const loginPageUrlTree = this.router.parseUrl('/login');
+
+    return loginPageUrlTree;
   }
 
 }

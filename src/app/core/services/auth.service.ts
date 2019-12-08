@@ -12,8 +12,9 @@ export class AuthService {
 
   constructor() { }
 
-  get isAuthorized() {
-    return !!this.getUserInfo();
+  get isAuthorized(): boolean {
+    // return !!this.getUserInfo();
+    return !!JSON.parse(localStorage.getItem(this.token));
   }
 
   login(userLogin: string): void {
@@ -25,6 +26,10 @@ export class AuthService {
   }
 
   getUserInfo(): User {
-    return JSON.parse(localStorage.getItem(this.token));
+    // return JSON.parse(localStorage.getItem(this.token));
+    if (this.isAuthorized) {
+      return this.user;
+    }
+    return null;
   }
 }
