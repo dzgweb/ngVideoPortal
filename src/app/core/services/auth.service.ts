@@ -25,7 +25,7 @@ export class AuthService {
     localStorage.removeItem(this.token);
   }
 
-  getUserInfo(): User {
+  getUserInfo(): User | null {
     // return JSON.parse(localStorage.getItem(this.token));
     if (this.isAuthorized) {
       return this.user;

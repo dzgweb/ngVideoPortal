@@ -33,14 +33,30 @@ export class CourseFormComponent implements OnInit {
         })
       )
       .subscribe(course => (this.course = { ...course }), err => console.log(err));
-  }
 
-  cancel() {
-    this.router.navigate(['/login']);
-  }
-
-  save() {
     console.log(this.course);
-    this.courseService.addCourse();
+  }
+
+  onCancel() {
+    this.onGoBack();
+  }
+
+  onSave() {
+    const course = { ...this.course };
+
+    const method = course.id ? 'updateCourse' : 'createCourse';
+    this.courseService[method](course);
+
+    // if (course.id) {
+    //   this.courseService.updateCourse(course);
+    // } else {
+    //   this.courseService.createCourse(course);
+    // }
+
+    this.onGoBack();
+  }
+
+  onGoBack(): void {
+    this.router.navigate(['/login']);
   }
 }

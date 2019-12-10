@@ -75,19 +75,18 @@ export class CourseService {
     );
   }
 
-  addCourse(): void {
+  createCourse(course: Course): void {
     let lastId = 0;
     if (courses.length > 0) {
       lastId = courses[courses.length - 1].id;
     }
 
-    courses.push(new Course(lastId + 1, 'new course', (new Date()).toString(), 0, 'Learn about where you can ' +
-      // tslint:disable-next-line:max-line-length
-      'find course descriptions, what information they include, how they work, and details about various components of a course description.' +
-      ' Course descriptions report information about a university or college\'s classes.', false ));
+    const newCourse = { ...course, id: lastId };
+
+    courses.push(newCourse);
   }
 
-  editCourse(course: Course): void {
+  updateCourse(course: Course): void {
     const i = courses.findIndex(item => item.id === course.id);
 
     if (i > -1) {
