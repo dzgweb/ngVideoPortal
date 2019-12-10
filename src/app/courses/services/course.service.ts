@@ -8,7 +8,7 @@ import { Course } from '../models';
 
 const courses = [
   {
-    id: 3,
+    id: 1,
     title: 'Video Course 3. Name tag',
     creationDate: '11.05.2019',
     duration: 125,
@@ -19,7 +19,7 @@ const courses = [
     topRated: true
   },
   {
-    id: 1,
+    id: 2,
     title: 'Video Course 1. Name tag',
     creationDate: '12.15.2019',
     duration: 188,
@@ -30,7 +30,7 @@ const courses = [
      topRated: false
   },
   {
-    id: 4,
+    id: 3,
     title: 'Video Course 4. Name tag',
     creationDate: '09.11.2019',
     duration: 55,
@@ -41,7 +41,7 @@ const courses = [
     topRated: false
   },
   {
-    id: 2,
+    id: 4,
     title: 'Video Course 2. Name tag',
     creationDate: '11.10.2019',
     duration: 77,
@@ -77,11 +77,11 @@ export class CourseService {
 
   createCourse(course: Course): void {
     let lastId = 0;
-    if (courses.length > 0) {
-      lastId = courses[courses.length - 1].id;
-    }
+    courses.map(c => {
+      if (c.id > lastId) { lastId = c.id; }
+    });
 
-    const newCourse = { ...course, id: lastId };
+    const newCourse = { ...course, id: ++lastId };
 
     courses.push(newCourse);
   }
