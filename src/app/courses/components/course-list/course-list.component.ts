@@ -45,8 +45,7 @@ export class CourseListComponent implements OnInit, OnDestroy {
   }
 
   onAddCourse() {
-    console.log(`onCreateCourse`);
-    this.courseService.addCourse();
+    this.router.navigate(['courses/new']);
   }
 
   onEditCourse(course: Course): void {
