@@ -50,6 +50,7 @@
   &-content{
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
     .course-desc{
       font: 14px 'Source Sans Pro', sans-serif;
       line-height: 1.71;
