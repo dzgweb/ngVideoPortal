@@ -39,7 +39,7 @@
                         class="form-control" 
                         id="duration" 
                         placeholder="minutes"
-                        name="title" 	
+                        name="duration" 	
                         [(ngModel)]="course.duration">    
             </div>
             <div class="duration-with-pipe">{{course.duration | duration }}</div>
@@ -51,7 +51,7 @@
                         <div class="required">*required</div>
                     </div>
                     <input 
-                        type="text"
+                        type="date"
                         class="form-control input-date" 
                         id="date"
                         placeholder="mm-dd-yyyy"
@@ -74,8 +74,8 @@
                 name="authors"> 
         </div>
         <div class="form-group form-group-btn">
-            <button type="submit" class="btn btn-gray" (click)="cancel()">Cancel</button>
-            <button type="submit" class="btn btn-green" (click)="save()">Save</button>
+            <button type="submit" class="btn btn-gray" (click)="onCancel()">Cancel</button>
+            <button type="submit" class="btn btn-green" (click)="onSave()">Save</button>
         </div>      
     </form>
 </div>

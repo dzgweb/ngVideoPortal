@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -24,9 +24,9 @@ import { LayoutModule } from './layout/layout.module';
     SharedModule,
     CoursesModule,
     UsersModule,
-    AppRoutingModule,
     MaterialModule,
     LayoutModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

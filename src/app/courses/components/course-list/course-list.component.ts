@@ -1,11 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Observable, of, from, Subscription } from 'rxjs';
 
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Course } from '../../models';
 import { CourseService } from '../../services';
 import { FilterPipe } from '../../../shared/';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-course-list',
@@ -21,7 +22,8 @@ export class CourseListComponent implements OnInit, OnDestroy {
 
   constructor(
     private courseService: CourseService,
-    private filterPipe: FilterPipe
+    private filterPipe: FilterPipe,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -43,16 +45,14 @@ export class CourseListComponent implements OnInit, OnDestroy {
   }
 
   onAddCourse() {
-    console.log(`onCreateCourse`);
-    this.courseService.addCourse();
+    this.router.navigate(['courses/new']);
   }
 
   onEditCourse(course: Course): void {
-    console.log(`onEditCourse  ${course.id}`);
+    this.router.navigate(['courses', course.id]);
   }
 
   onDeleteCourse(course: Course): void {
-    console.log(`onDeleteCourse ${course.id}`);
     this.courseService.deleteCourse(course);
   }
 

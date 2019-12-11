@@ -6,10 +6,12 @@
 }
 .breadcrumb-container{
   a {
-    font-family: SourceSansPro;
-    font-size: 14px;
-    font-weight: 600;
+    font: 600 14px SourceSansPro;
     color:#000;
     text-decoration: none;
   }
+  span {
+    font: 600 14px SourceSansPro;
+  }
+  
 }

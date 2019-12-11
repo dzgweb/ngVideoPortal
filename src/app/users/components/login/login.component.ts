@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { User, AuthService } from '../../../users';
+import { AuthService } from '../../../core/services';
+import { User} from '../../../users/models';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,9 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    if (this.authService.isAuthorized) {
+      this.router.navigate(['courses']);
+    }
   }
 
   onLogin(loginForm: NgForm) {
@@ -28,9 +32,16 @@ export class LoginComponent implements OnInit {
     // Form value
     console.log(`Login: ${JSON.stringify(loginForm.value)}`);
 
-    this.authService.login();
+    this.authService.login(JSON.stringify(loginForm.value));
 
-    this.router.navigate(['/courses']);
+    const redirectUrl = this.authService.redirectUrl;
+
+    if (redirectUrl) {
+      this.authService.redirectUrl = null;
+      this.router.navigateByUrl(redirectUrl);
+    } else {
+      this.router.navigate(['courses']);
+    }
+
   }
-
 }

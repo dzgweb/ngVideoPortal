@@ -97,7 +97,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
       border-radius: 3px;
       border: solid 1px #d9dbe3;
       background-color: #fff;
-      padding: 6px 12px;;
+      padding: 6px 12px;
+      &::placeholder {
+        color: #c0c3ce;
+      }
   }
   textarea{
     width: 100%;
