@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 
 // RxJs
 import { Observable, of, throwError, BehaviorSubject } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import {catchError, concatMap, map} from 'rxjs/operators';
 
 import { Course } from '../models';
 
@@ -47,14 +47,26 @@ export class CourseService {
   }
 
   createCourse(course: Course): Observable<Course> {
+    const url = this.coursesUrl;
+    const body = JSON.stringify(course);
+    const options = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
 
+    return this.http
+      .post<Course>(url, body, options)
+      .pipe(
+        catchError( this.handleError )
+      );
   }
-  deleteCourse(course: Course): void {
-    const i = courses.findIndex(item => item.id === course.id);
 
-    if (i > -1) {
-      courses.splice(i, 1);
-    }
+  deleteCourse(course: Course): Observable<Course[]> {
+    const url = `${this.coursesUrl}/${course.id}`;
+
+    return this.http.delete(url)
+      .pipe(
+        concatMap(() => this.getCourses())
+      );
   }
 
   getFilterText(): BehaviorSubject<string> {
