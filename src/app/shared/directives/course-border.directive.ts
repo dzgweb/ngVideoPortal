@@ -15,7 +15,7 @@ export class CourseBorderDirective implements OnInit {
   constructor(private el: ElementRef, private render: Renderer2) {}
 
   ngOnInit() {
-    this.creationDate = new Date(this.course.creationDate);
+    this.creationDate = new Date(this.course.date);
     this.withinTwoWeeks = new Date(new Date(new Date().toLocaleDateString()).setDate(this.creationDate.getDate() - 14));
     this.setBorder();
   }
