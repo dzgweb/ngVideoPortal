@@ -14,7 +14,7 @@ import { FilterPipe } from '../../../shared/';
   styleUrls: ['./course-list.component.scss']
 })
 export class CourseListComponent implements OnInit, OnDestroy {
-  public courses$: Observable<Course[]>  = of([]);
+  public courses$: Observable<Course[]>;
   public faPlus = faPlus;
   public filterText: string;
 
