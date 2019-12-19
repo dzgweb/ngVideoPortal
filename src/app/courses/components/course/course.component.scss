@@ -13,7 +13,7 @@
   &-header{
     display: flex;
     justify-content: space-between;
-    margin: 0 0 7px 0; 
+    margin: 0 0 7px 0;
     .course-title{
       display: flex;
       justify-content: flex-start;
@@ -21,7 +21,7 @@
     }
     h2{
       font: 600 24px 'Source Sans Pro', sans-serif;
-      line-height: 1.25;      
+      line-height: 1.25;
     }
     fa-icon{
       margin: 0 0 0 10px;
@@ -51,6 +51,7 @@
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    margin: 0 15px 0 0;
     .course-desc{
       font: 14px 'Source Sans Pro', sans-serif;
       line-height: 1.71;
