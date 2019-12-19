@@ -14,7 +14,7 @@ import { FilterPipe } from '../../../shared/';
   styleUrls: ['./course-list.component.scss']
 })
 export class CourseListComponent implements OnInit, OnDestroy {
-  public courses$: Observable<Course[]>;
+  public courses$: Observable<Course[]>  = of([]);
   public faPlus = faPlus;
   public filterText: string;
 
@@ -53,7 +53,7 @@ export class CourseListComponent implements OnInit, OnDestroy {
   }
 
   onDeleteCourse(course: Course): void {
-    this.courseService.deleteCourse(course);
+    this.courses$ = this.courseService.deleteCourse(course);
   }
 
   onLoadMore() {

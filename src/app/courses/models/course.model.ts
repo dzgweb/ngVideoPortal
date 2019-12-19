@@ -19,5 +19,5 @@ export class Course implements ICourse {
     public description: string = '',
     public authors?: CourseAuthor[],
     public isTopRated: boolean = false
-  ) { }
+  ) {}
 }

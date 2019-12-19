@@ -41,8 +41,7 @@ export class CourseService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
 
-    return this.http
-      .put<Course>(url, body, options)
+    return this.http.patch<Course>(url, body, options)
       .pipe( catchError(this.handleError) );
   }
 
@@ -60,9 +59,9 @@ export class CourseService {
       );
   }
 
-  deleteCourse(course: Course): Observable<Course[]> {
+  deleteCourse(course: Course): Observable<any> {
     const url = `${this.coursesUrl}/${course.id}`;
-
+    console.log(url);
     return this.http.delete(url)
       .pipe(
         concatMap(() => this.getCourses())
