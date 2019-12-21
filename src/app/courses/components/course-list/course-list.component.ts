@@ -27,17 +27,17 @@ export class CourseListComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.courses$ = this.getFilterCourses(this.courseService.getCourses(), this.filterText);
-    // this.courses$ = this.courseService.getCourses();
-    this.sub = this.courseService.getFilterText()
-      .subscribe(filterText => {
-        this.filterText = filterText;
-        this.courses$ = this.getFilterCourses(this.courseService.getCourses(), this.filterText);
-      });
+    // this.courses$ = this.getFilterCourses(this.courseService.getCourses(), this.filterText);
+    this.courses$ = this.courseService.getCourses();
+    // this.sub = this.courseService.getFilterText()
+    //   .subscribe(filterText => {
+    //     this.filterText = filterText;
+    //     this.courses$ = this.getFilterCourses(this.courseService.getCourses(), this.filterText);
+    //   });
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
+   // this.sub.unsubscribe();
   }
 
   getFilterCourses(courses$: Observable<Array<Course>>, searchText: string): Observable<Array<Course>> {
@@ -53,10 +53,10 @@ export class CourseListComponent implements OnInit, OnDestroy {
   }
 
   onDeleteCourse(course: Course) {
-    // this.courses$ = this.courseService.deleteCourse(course);
-    this.courseService.deleteCourse(course).subscribe(() => {
-      this.courses$ = this.getFilterCourses(this.courseService.getCourses(), this.filterText);
-    });
+    this.courses$ = this.courseService.deleteCourse(course);
+    // this.courseService.deleteCourse(course).subscribe(() => {
+    //   this.courses$ = this.getFilterCourses(this.courseService.getCourses(), this.filterText);
+    // });
   }
 
   onLoadMore() {

@@ -41,7 +41,7 @@ export class CourseService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
 
-    return this.http.patch<Course>(url, body, options)
+    return this.http.put<Course>(url, body, options)
       .pipe( catchError(this.handleError) );
   }
 

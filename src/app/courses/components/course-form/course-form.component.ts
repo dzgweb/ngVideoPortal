@@ -34,8 +34,6 @@ export class CourseFormComponent implements OnInit {
         })
       )
       .subscribe(course => (this.course = { ...course }), err => console.log(err));
-
-    console.log(this.course);
   }
 
   onCancel() {
@@ -51,14 +49,6 @@ export class CourseFormComponent implements OnInit {
           this.onGoBack();
         }
       );
-
-    // if (course.id) {
-    //   this.courseService.updateCourse(course);
-    // } else {
-    //   this.courseService.createCourse(course);
-    // }
-
-    this.onGoBack();
   }
 
   onGoBack(): void {
