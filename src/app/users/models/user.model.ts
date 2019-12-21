@@ -1,13 +1,11 @@
-export interface IUser {
+export interface User {
   id: number;
-  firstName: string;
-  lastName: string;
+  token: string;
+  name: {
+    first: string;
+    last: string;
+  };
+  login: string;
+  password: string;
 }
 
-export class User implements IUser {
-  constructor(
-    public id: number,
-    public firstName: string,
-    public lastName: string
-  ) {}
-}
