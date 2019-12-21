@@ -48,11 +48,11 @@ export class CourseListComponent implements OnInit, OnDestroy {
     this.router.navigate(['courses/new']);
   }
 
-  onEditCourse(course: Course): void {
+  onEditCourse(course: Course) {
     this.router.navigate(['courses', course.id]);
   }
 
-  onDeleteCourse(course: Course): void {
+  onDeleteCourse(course: Course) {
     this.courses$ = this.courseService.deleteCourse(course);
   }
 

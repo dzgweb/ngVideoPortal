@@ -47,8 +47,7 @@ export class CourseFormComponent implements OnInit {
 
     const method = course.id ? 'updateCourse' : 'createCourse';
     this.sub = this.courseService[method](course)
-      .subscribe(
-        () => {
+      .subscribe(() => {
           this.onGoBack();
         }
       );

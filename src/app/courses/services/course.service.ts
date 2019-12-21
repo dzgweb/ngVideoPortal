@@ -59,9 +59,9 @@ export class CourseService {
       );
   }
 
-  deleteCourse(course: Course): Observable<any> {
+  deleteCourse(course: Course): Observable<Course[]> {
     const url = `${this.coursesUrl}/${course.id}`;
-    console.log(url);
+
     return this.http.delete(url)
       .pipe(
         concatMap(() => this.getCourses())
