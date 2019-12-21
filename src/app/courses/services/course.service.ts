@@ -68,6 +68,7 @@ export class CourseService {
       );
   }
 
+
   getFilterText(): BehaviorSubject<string> {
     return this.filterText;
   }

@@ -53,7 +53,10 @@ export class CourseListComponent implements OnInit, OnDestroy {
   }
 
   onDeleteCourse(course: Course) {
-    this.courses$ = this.courseService.deleteCourse(course);
+    // this.courses$ = this.courseService.deleteCourse(course);
+    this.courseService.deleteCourse(course).subscribe(() => {
+      this.courses$ = this.getFilterCourses(this.courseService.getCourses(), this.filterText);
+    });
   }
 
   onLoadMore() {
