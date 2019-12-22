@@ -1,3 +1,3 @@
 export * from './models';
 export * from './components';
-export * from '../core/services';
+export * from './services';

@@ -6,31 +6,25 @@ import { User } from '../../users';
 import { tap } from 'rxjs/operators';
 
 import { LoginResponse } from './loginResonse';
-import { BASE_URL } from '../config';
-
-export const LOGIN_ENDPOINT = `${BASE_URL}/auth/login`;
-export const USER_ENDPOINT = `${BASE_URL}/auth/userinfo`;
+import { LOGIN_ENDPOINT } from '../config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  // private token = '1234';
-  // private user: User = {id: 1, firstName: 'John', lastName: 'Smit'};
   public redirectUrl: string;
 
   constructor(private http: HttpClient) { }
 
   get isAuthorized(): boolean {
-    // return !!this.getUserInfo();
-    return !!JSON.parse(localStorage.getItem('authToken'));
+    return !!this.getAuthToken();
+  }
+
+  getAuthToken() {
+    return localStorage.getItem('authToken');
   }
 
   login(login: string, password: string): Observable<LoginResponse> {
-    // localStorage.setItem(this.token, userLogin);
-    console.log(login, password);
-
-
     const loginPayload = {
       login,
       password
@@ -56,6 +50,6 @@ export class AuthService {
   }
 
   getUserInfo(): User | null {
-     return JSON.parse(localStorage.getItem('authToken'));
+    return JSON.parse(localStorage.getItem('authToken'));
   }
 }

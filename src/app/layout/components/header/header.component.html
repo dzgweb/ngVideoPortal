@@ -7,7 +7,7 @@
 				</a>
 			</div>
 			<div class="auth" *ngIf="hasUserInfo">
-				<div class="auth-user-login" *ngIf="user">{{user.firstName}}</div>
+				<div class="auth-user-login" *ngIf="user">{{user.name.first}}</div>
 				<a (click)="onLogout()" class="auth-log-off">Log off</a>
 			</div>
 		</div>
