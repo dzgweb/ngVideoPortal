@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 
 import { AuthService } from '../../../core';
 import { User, UserService } from '../../../users';
@@ -12,9 +12,9 @@ import { User, UserService } from '../../../users';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  public user: User;
+  public user$: Observable<User>;
 
-  private sub: Subscription;
+  // private sub: Subscription;
 
   constructor(
     private router: Router,
@@ -27,11 +27,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.sub = this.userService.getUser().subscribe((user: User) => this.user = user);
+    this.user$ = this.userService.getUser();
+    // this.sub = this.userService.getUser().subscribe((user: User) => this.user = user);
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
+    // this.sub.unsubscribe();
   }
 
   onLogout(): void {
