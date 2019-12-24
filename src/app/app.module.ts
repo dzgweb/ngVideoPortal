@@ -12,7 +12,7 @@ import { CoursesModule } from './courses/courses.module';
 import { UsersModule } from './users/users.module';
 import { MaterialModule } from './material/material.module';
 import { LayoutModule } from './layout/layout.module';
-
+import { httpInterceptorProviders } from './core/interceptors';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,7 @@ import { LayoutModule } from './layout/layout.module';
     LayoutModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
