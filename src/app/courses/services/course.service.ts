@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 
-// RxJs
-import { Observable, of, throwError, BehaviorSubject } from 'rxjs';
-import {catchError, concatMap, map} from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import {catchError, concatMap} from 'rxjs/operators';
 
 import { Course } from '../models';
 
@@ -13,13 +12,15 @@ import { Course } from '../models';
 export class CourseService {
   private coursesUrl = 'http://localhost:3004/courses';
 
-  filterText: BehaviorSubject<string> = new BehaviorSubject<string>('');
-  public filterText$ = this.filterText.asObservable();
-
   constructor(private http: HttpClient) {}
 
-  getCourses(): Observable<Course[]> {
-    return this.http.get<Course[]>(this.coursesUrl)
+  getCourses(startIndex?: number, count?: number, searchText?: string, sortKey: string = 'date'): Observable<Course[]> {
+    const queryParams = `?start=${startIndex || 0}` +
+      (count ? `&count=${count}` : '') +
+      (searchText ? `&textFragment=${searchText}` : '') +
+      (sortKey ? `&sort=${sortKey}` : '');
+
+    return this.http.get<Course[]>(`${this.coursesUrl}${queryParams}`)
       .pipe(
         catchError(this.handleError)
       );
@@ -66,11 +67,6 @@ export class CourseService {
       .pipe(
         concatMap(() => this.getCourses())
       );
-  }
-
-
-  getFilterText(): BehaviorSubject<string> {
-    return this.filterText;
   }
 
   private handleError(err: HttpErrorResponse) {

@@ -1,4 +1,6 @@
-<app-course-search></app-course-search>
+<app-course-search (searchFragment)="onSearchTextChange($event)">
+
+</app-course-search>
 <div class="container">
     <button class="btn-create-course"
       routerLink="/courses/new"><fa-icon [icon]="faPlus"></fa-icon> Add course</button> <!-- (click)="onAddCourse()" -->

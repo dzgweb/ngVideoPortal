@@ -1,26 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-
-import { CourseService } from '../../services';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-course-search',
   templateUrl: './course-search.component.html',
   styleUrls: ['./course-search.component.scss']
 })
-export class CourseSearchComponent implements OnInit {
-  public searchText: string;
+export class CourseSearchComponent {
+  @Output() searchFragment = new EventEmitter<string>();
 
-  constructor(private courseService: CourseService) { }
-
-  ngOnInit() {
-  }
+  private searchText: string;
 
   onSearch() {
-    if (this.searchText) {
-      console.log(this.searchText);
-      this.courseService.filterText.next(this.searchText);
-    } else {
-      this.courseService.filterText.next('');
-    }
+    this.searchFragment.emit(this.searchText);
   }
 }
