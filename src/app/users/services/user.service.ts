@@ -20,7 +20,7 @@ export class UserService {
       const token = this.authService.getAuthToken();
       const payload = {
         token
-      };
+    };
 
       return this.http.post<User>(USER_ENDPOINT, payload);
     }

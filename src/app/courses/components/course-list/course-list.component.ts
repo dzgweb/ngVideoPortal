@@ -35,7 +35,7 @@ export class CourseListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
+    // this.sub.unsubscribe();
   }
 
   // getFilterCourses(courses$: Observable<Array<Course>>, searchText: string): Observable<Array<Course>> {

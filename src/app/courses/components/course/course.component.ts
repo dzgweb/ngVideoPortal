@@ -3,7 +3,6 @@ import {Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy}
 import { faClock, faCalendarAlt, faPen, faTrashAlt, faStar } from '@fortawesome/free-solid-svg-icons';
 
 import { Course } from '../../models';
-import { DeleteCourseDialogComponent } from '../../../material';
 
 @Component({
   selector: 'app-course',

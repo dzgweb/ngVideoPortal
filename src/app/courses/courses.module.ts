@@ -7,7 +7,6 @@ import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { SharedModule } from '../shared/shared.module';
-import { MaterialModule } from '../material/material.module';
 import { CourseComponent, CourseListComponent, CourseFormComponent, CourseSearchComponent } from './components';
 
 import { CoursesRoutingModule } from './courses-routing.module';
@@ -21,7 +20,6 @@ import { CoursesRoutingModule } from './courses-routing.module';
     FormsModule,
     FontAwesomeModule,
     SharedModule,
-    MaterialModule,
     CoursesRoutingModule
   ],
   exports: [CourseSearchComponent]

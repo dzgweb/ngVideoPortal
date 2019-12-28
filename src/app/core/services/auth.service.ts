@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { User } from '../../users';
 import { tap } from 'rxjs/operators';
 
-import { LoginResponse } from './loginResonse';
+import { LoginResponse } from '../models/loginResponse';
 import { LOGIN_ENDPOINT } from '../config';
 
 @Injectable({

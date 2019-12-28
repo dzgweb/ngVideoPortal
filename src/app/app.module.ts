@@ -10,7 +10,6 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { CoursesModule } from './courses/courses.module';
 import { UsersModule } from './users/users.module';
-import { MaterialModule } from './material/material.module';
 import { LayoutModule } from './layout/layout.module';
 import { httpInterceptorProviders } from './core/interceptors';
 
@@ -26,7 +25,6 @@ import { httpInterceptorProviders } from './core/interceptors';
     SharedModule,
     CoursesModule,
     UsersModule,
-    MaterialModule,
     LayoutModule,
     AppRoutingModule
   ],

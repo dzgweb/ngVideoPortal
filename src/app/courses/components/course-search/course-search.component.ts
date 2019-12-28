@@ -28,11 +28,11 @@ export class CourseSearchComponent implements AfterViewInit, OnDestroy  {
   ngAfterViewInit(): void {
     const terms$ = fromEvent<any>(this.input.nativeElement, 'keyup')
       .pipe(
+        debounceTime(500),
+        distinctUntilChanged(),
         map(event => event.target.value),
-        filter(chars => ((chars.length < 0)) && chars.length >= 3),
-        tap(e => console.log(e)),
-        debounceTime(400),
-        distinctUntilChanged()
+        filter(chars => !chars.length || chars.length >= 3),
+        tap(e => console.log(e))
       );
 
     this.sub = terms$
