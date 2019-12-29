@@ -33,10 +33,8 @@ export class CourseComponent implements OnInit {
   }
 
   onDeleteCourse() {
-    const wantDelete = confirm('Do you really want to delete this course?');
-    console.log('wantDelete', wantDelete);
     console.log('onDeleteCourse');
-    if (wantDelete) { this.deleteCourse.emit(this.course); }
+    this.deleteCourse.emit(this.course);
   }
 
 }

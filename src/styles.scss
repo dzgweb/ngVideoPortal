@@ -26,6 +26,7 @@ $ng-videl-portal-theme: mat-light-theme($ng-videl-portal-primary, $ng-videl-port
 // that you are using.
 @include angular-material-theme($ng-videl-portal-theme);
 
+
 @import '~bootstrap/scss/bootstrap-grid';
 /* You can add global styles to this file, and also import other style files */
 * {
@@ -53,8 +54,7 @@ body {
 .content {
   flex: 1 0 auto;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
 }
 .footer {
 	flex: 0 0 auto;
