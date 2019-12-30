@@ -16,9 +16,13 @@ import { FilterPipe } from '../../../shared/';
 export class CourseListComponent implements OnInit, OnDestroy {
   public courses$: Observable<Course[]>;
   public faPlus = faPlus;
-  public filterText: string;
 
-  private sub: Subscription;
+  //private sub: Subscription;
+
+  private currentPage = 0;
+  private countCourses = 5;
+  private searchText: string;
+  private sortBy: string;
 
   constructor(
     private courseService: CourseService,
@@ -27,36 +31,43 @@ export class CourseListComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.courses$ = this.getFilterCourses(this.courseService.getCourses(), this.filterText);
-    // this.courses$ = this.courseService.getCourses();
-    this.sub = this.courseService.getFilterText()
-      .subscribe(filterText => {
-        this.filterText = filterText;
-        this.courses$ = this.getFilterCourses(this.courseService.getCourses(), this.filterText);
-      });
+    this.loadCourses();
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
+   // this.sub.unsubscribe();
   }
 
-  getFilterCourses(courses$: Observable<Array<Course>>, searchText: string): Observable<Array<Course>> {
-    return this.filterPipe.transform(courses$, searchText);
-  }
+  // getFilterCourses(courses$: Observable<Array<Course>>, searchText: string): Observable<Array<Course>> {
+  //   return this.filterPipe.transform(courses$, searchText);
+  // }
 
   onAddCourse() {
     this.router.navigate(['courses/new']);
   }
 
-  onEditCourse(course: Course): void {
+  onEditCourse(course: Course) {
     this.router.navigate(['courses', course.id]);
   }
 
-  onDeleteCourse(course: Course): void {
-    this.courseService.deleteCourse(course);
+  onDeleteCourse(course: Course) {
+    this.courses$ = this.courseService.deleteCourse(course);
+    // this.courseService.deleteCourse(course).subscribe(() => {
+    //   this.courses$ = this.getFilterCourses(this.courseService.getCourses(), this.filterText);
+    // });
   }
 
   onLoadMore() {
-    console.log('onLoadMore');
+    this.countCourses += 5;
+    this.loadCourses();
+  }
+
+  onSearchTextChange(searchText: string) {
+    this.searchText = searchText;
+    this.loadCourses();
+  }
+
+  private loadCourses() {
+    this.courses$ = this.courseService.getCourses(this.currentPage, this.countCourses, this.searchText, this.sortBy);
   }
 }

@@ -14,9 +14,9 @@ export class OrderbyPipe implements PipeTransform {
     const arraySort = array.sort((a: Course, b: Course) => {
       // let aDate = new Date(a.creationDate);
       // let bDate = new Date(b.creationDate);
-      if (a.creationDate > b.creationDate) {
+      if (a.date > b.date) {
         return 1;
-      } else if (a.creationDate < b.creationDate) {
+      } else if (a.date < b.date) {
         return -1;
       }
       return 0;

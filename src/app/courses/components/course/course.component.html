@@ -1,18 +1,18 @@
-<div class="course" 
+<div class="course"
   [appCourseBorder]="course"
-  [ngClass]="{'top-rated' : course.topRated}">
+  [ngClass]="{'top-rated' : course.isTopRated}">
   <div class="course-content">
     <div class="course-header">
       <div class="course-title">
-        <h2>{{course.title | uppercase}}</h2>
-        <fa-icon *ngIf=course.topRated [icon]="faStar"></fa-icon>
+        <h2>{{course.name | uppercase}}</h2>
+        <fa-icon *ngIf=course.isTopRated [icon]="faStar"></fa-icon>
       </div>
       <div class="course-info">
           <div class="course-info-duration">
-            <fa-icon [icon]="faClock"></fa-icon> {{course.duration | duration}}
+            <fa-icon [icon]="faClock"></fa-icon> {{course.length | duration}}
           </div>
           <div class="course-info-date">
-            <fa-icon [icon]="faCalendarAlt"></fa-icon> {{course.creationDate | date:'mediumDate'}}
+            <fa-icon [icon]="faCalendarAlt"></fa-icon> {{course.date | date:'mediumDate'}}
           </div>
       </div>
     </div>

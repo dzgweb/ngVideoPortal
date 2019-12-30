@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 import { switchMap } from 'rxjs/operators';
-import { of } from 'rxjs';
+import {of, Subscription} from 'rxjs';
 
 import { Course } from '../../models';
 import { CourseService } from '../../services';
@@ -14,6 +14,7 @@ import { CourseService } from '../../services';
 })
 export class CourseFormComponent implements OnInit {
   public course: Course;
+  private sub: Subscription;
 
   constructor(
     private router: Router,
@@ -33,8 +34,6 @@ export class CourseFormComponent implements OnInit {
         })
       )
       .subscribe(course => (this.course = { ...course }), err => console.log(err));
-
-    console.log(this.course);
   }
 
   onCancel() {
@@ -45,15 +44,11 @@ export class CourseFormComponent implements OnInit {
     const course = { ...this.course };
 
     const method = course.id ? 'updateCourse' : 'createCourse';
-    this.courseService[method](course);
-
-    // if (course.id) {
-    //   this.courseService.updateCourse(course);
-    // } else {
-    //   this.courseService.createCourse(course);
-    // }
-
-    this.onGoBack();
+    this.sub = this.courseService[method](course)
+      .subscribe(() => {
+          this.onGoBack();
+        }
+      );
   }
 
   onGoBack(): void {

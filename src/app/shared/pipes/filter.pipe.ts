@@ -25,7 +25,7 @@ export class FilterPipe implements PipeTransform {
     }
 
     return courses$.pipe(
-      map(c => c.filter(i => i.title.includes(searchText)))
+      map(courses => courses.filter(course => course.name.includes(searchText)))
     );
   }
 }
