@@ -17,7 +17,7 @@ export class CourseListComponent implements OnInit, OnDestroy {
   public courses$: Observable<Course[]>;
   public faPlus = faPlus;
 
-  private sub: Subscription;
+  //private sub: Subscription;
 
   private currentPage = 0;
   private countCourses = 5;
@@ -35,7 +35,7 @@ export class CourseListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
+   // this.sub.unsubscribe();
   }
 
   // getFilterCourses(courses$: Observable<Array<Course>>, searchText: string): Observable<Array<Course>> {
