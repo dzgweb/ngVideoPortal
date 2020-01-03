@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription, Observable } from 'rxjs';
 
 import { AuthService } from '../../../core';
-import { User, UserService } from '../../../users';
+import { User } from '../../../users';
 
 @Component({
   selector: 'app-header',
@@ -18,8 +18,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
-    private authService: AuthService,
-    private userService: UserService
+    private authService: AuthService
   ) {}
 
   get hasUserInfo(): boolean {
@@ -27,7 +26,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.user$ = this.userService.getUser();
+    this.user$ = this.authService.userInfo$;
+    // this.user$ = this.userService.getUser();
     // this.sub = this.userService.getUser().subscribe((user: User) => this.user = user);
   }
 
