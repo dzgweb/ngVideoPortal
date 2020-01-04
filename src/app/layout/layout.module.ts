@@ -3,14 +3,13 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-import { LayoutRoutingModule } from './layout-routing.module';
 import {
   BreadcrumbsComponent,
   FooterComponent,
   HeaderComponent,
-  LoaderComponent
+  LoaderComponent,
+  PathNotFoundComponent
 } from './components';
-import { PathNotFoundComponent } from './components/path-not-found/path-not-found.component';
 
 const components = [
   HeaderComponent,
@@ -27,7 +26,6 @@ const components = [
   imports: [
     CommonModule,
     RouterModule,
-    LayoutRoutingModule,
     MatProgressSpinnerModule
   ],
   exports: [
