@@ -1,80 +1,81 @@
 <div class="course-edit">
-    <h1>New course</h1>
-    <form
-        #courseForm="ngForm">
-        <div class="form-group">
-            <div class="form-group-label">
-                <label for="title">Title:</label>
-                <div class="required">*required</div>
-            </div>
-            <input
-                type="text"
-                class="form-control"
-                id="title"
-                placeholder="Course title"
-                name="title"
-                [(ngModel)]="course.name">
-        </div>
-        <div class="form-group">
-            <div class="form-group-label">
-                <label for="title">Description:</label>
-                <div class="required">*required</div>
-            </div>
-            <textarea
-                class="form-control"
-                placeholder="Add description"
-                name="description"
-                [(ngModel)]="course.description">
+  <h1>New course</h1>
+  <form
+    #courseForm="ngForm">
+    <div class="form-group">
+      <div class="form-group-label">
+        <label for="title">Title:</label>
+        <div class="required">*required</div>
+      </div>
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        placeholder="Course title"
+        name="title"
+        [(ngModel)]="course.name">
+    </div>
+    <div class="form-group">
+      <div class="form-group-label">
+        <label for="title">Description:</label>
+        <div class="required">*required</div>
+      </div>
+      <textarea
+        class="form-control"
+        placeholder="Add description"
+        name="description"
+        [(ngModel)]="course.description">
             </textarea>
+    </div>
+    <div class="form-group">
+      <div class="form-group-short">
+        <div class="form-group-label">
+          <label for="title">Duration:</label>
+          <div class="required">*required</div>
         </div>
-        <div class="form-group">
-            <div class="form-group-short">
-                <div class="form-group-label">
-                        <label for="title">Duration:</label>
-                        <div class="required">*required</div>
-                    </div>
-                    <input
-                        type="number"
-                        class="form-control"
-                        id="duration"
-                        placeholder="minutes"
-                        name="duration"
-                        [(ngModel)]="course.length">
-            </div>
-            <div class="duration-with-pipe">{{course.length | duration }}</div>
+        <input
+          type="number"
+          class="form-control"
+          id="duration"
+          placeholder="minutes"
+          name="duration"
+          [(ngModel)]="course.length">
+      </div>
+      <div class="duration-with-pipe">{{course.length | duration }}</div>
+    </div>
+    <div class="form-group">
+      <div class="form-group-short">
+        <div class="form-group-label">
+          <label for="title">Date:</label>
+          <div class="required">*required</div>
         </div>
-        <div class="form-group">
-            <div class="form-group-short">
-                <div class="form-group-label">
-                        <label for="title">Date:</label>
-                        <div class="required">*required</div>
-                    </div>
-                    <input
-                        type="text"
-                        class="form-control input-date"
-                        id="date"
-                        placeholder="mm-dd-yyyy"
-                        name="date"
-                        [(ngModel)]="course.date ">
-            </div>
+        <input
+          type="date"
+          class="form-control input-date"
+          id="date"
+          placeholder="mm-dd-yyyy"
+          name="date"
+          [value]="course.date | date:'yyyy-MM-dd'"
+          (input)="course.date = $event.target.value">
+      </div>
+    </div>
+    <div class="form-group form-group-authors">
+      <div class="form-group">
+        <div class="form-group-label">
+          <label for="title">Authors:</label>
+          <div class="required">*required</div>
         </div>
-        <div class="form-group form-group-authors">
-            <div class="form-group">
-                <div class="form-group-label">
-                    <label for="title">Authors:</label>
-                    <div class="required">*required</div>
-                </div>
-            </div>
-            <input
-                type="text"
-                class="form-control"
-                id="authors"
-                placeholder="Start typing"
-                name="authors">
-        </div>
-        <div class="form-group form-group-btn">
-            <button type="button" class="btn btn-gray" (click)="onCancel()">Cancel</button>
-            <button type="submit" class="btn btn-green" (click)="onSave()">Save</button>
-        </div>
-    </form>
+      </div>
+      <input
+        type="text"
+        class="form-control"
+        id="authors"
+        placeholder="Start typing"
+        name="authors">
+    </div>
+    <div class="form-group form-group-btn">
+      <button type="button" class="btn btn-gray" (click)="onCancel()">Cancel</button>
+      <button type="submit" class="btn btn-green" (click)="onSave()">Save</button>
+    </div>
+  </form>
 </div>

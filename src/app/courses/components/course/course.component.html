@@ -1,6 +1,6 @@
 <div class="course"
-  [appCourseBorder]="course"
-  [ngClass]="{'top-rated' : course.isTopRated}">
+     [appCourseBorder]="course"
+     [ngClass]="{'top-rated' : course.isTopRated}">
   <div class="course-content">
     <div class="course-header">
       <div class="course-title">
@@ -8,12 +8,14 @@
         <fa-icon *ngIf=course.isTopRated [icon]="faStar"></fa-icon>
       </div>
       <div class="course-info">
-          <div class="course-info-duration">
-            <fa-icon [icon]="faClock"></fa-icon> {{course.length | duration}}
-          </div>
-          <div class="course-info-date">
-            <fa-icon [icon]="faCalendarAlt"></fa-icon> {{course.date | date:'mediumDate'}}
-          </div>
+        <div class="course-info-duration">
+          <fa-icon [icon]="faClock"></fa-icon>
+          {{course.length | duration}}
+        </div>
+        <div class="course-info-date">
+          <fa-icon [icon]="faCalendarAlt"></fa-icon>
+          {{course.date | date:'mediumDate'}}
+        </div>
       </div>
     </div>
     <div class="course-desc">
@@ -21,7 +23,13 @@
     </div>
   </div>
   <div class="course-manager">
-    <button class="course-manager-edit btn btn-sm" (click)="onEditCourse()"><fa-icon [icon]="faPen"></fa-icon> Edit</button>
-    <button class="course-manager-delete btn btn-sm" (click)="onDeleteCourse()"><fa-icon [icon]="faTrashAlt"></fa-icon> Delete</button>
+    <button class="course-manager-edit btn btn-sm" (click)="onEditCourse()">
+      <fa-icon [icon]="faPen"></fa-icon>
+      Edit
+    </button>
+    <button class="course-manager-delete btn btn-sm" (click)="onDeleteCourse()">
+      <fa-icon [icon]="faTrashAlt"></fa-icon>
+      Delete
+    </button>
   </div>
 </div>
