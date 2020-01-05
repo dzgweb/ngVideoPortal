@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, DoCheck } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Subscription, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { AuthService } from '../../../core';
 import { User } from '../../../users';
@@ -11,10 +11,8 @@ import { User } from '../../../users';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, OnDestroy {
+export class HeaderComponent implements OnInit {
   public user$: Observable<User>;
-
-  // private sub: Subscription;
 
   constructor(
     private router: Router,
@@ -27,12 +25,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.user$ = this.authService.userInfo$;
-    // this.user$ = this.userService.getUser();
-    // this.sub = this.userService.getUser().subscribe((user: User) => this.user = user);
-  }
 
-  ngOnDestroy() {
-    // this.sub.unsubscribe();
+    if (this.hasUserInfo) {
+      this.authService.getUser().subscribe((user: User) => this.authService.userInfo.next(user));
+    }
   }
 
   onLogout(): void {
