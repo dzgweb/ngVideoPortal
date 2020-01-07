@@ -13,7 +13,6 @@ export class CourseDeleteModalComponent {
     private dialogRef: MatDialogRef<CourseDeleteModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data
   ) {
-    console.log(data);
     this.courseTitle = data.title;
   }
 

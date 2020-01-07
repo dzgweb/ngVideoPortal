@@ -12,6 +12,8 @@ import { SharedModule } from './shared/shared.module';
 import { CoursesModule } from './courses/courses.module';
 import { UsersModule } from './users/users.module';
 import { LayoutModule } from './layout/layout.module';
+import { RootStoreModule } from './core/@ngrx/root-store.module';
+
 import { httpInterceptorProviders } from './core/interceptors';
 
 @NgModule({
@@ -28,6 +30,7 @@ import { httpInterceptorProviders } from './core/interceptors';
     CoursesModule,
     UsersModule,
     LayoutModule,
+    RootStoreModule,
     AppRoutingModule
   ],
   providers: [httpInterceptorProviders],

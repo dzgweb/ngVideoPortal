@@ -128,5 +128,8 @@
       }
     }
   },
-  "defaultProject": "ng-videl-portal"
+  "defaultProject": "ng-videl-portal",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
