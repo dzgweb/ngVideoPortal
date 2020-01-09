@@ -1,0 +1,49 @@
+.modal-header{
+  background: #eaedf5;
+  display: flex;
+  justify-content: space-between;
+  margin: -24px -24px 24px -24px;
+  padding: 15px 24px 10px;
+  h5{
+    font:600 18px 'Source Sans Pro', sans-serif;
+    letter-spacing: 0.1px;
+  }
+  .close{
+    background: none;
+    border: none;
+    font-size: 25px;
+    cursor: pointer;
+    &:focus, &:active{
+      outline:none;
+    }
+  }
+}
+.modal-body{
+  margin-bottom: 30px;
+  font:14px 'Source Sans Pro', sans-serif;
+}
+.modal-footer{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    .btn{
+        margin-left: 13px;
+        padding: 10px 20px 12px;
+        border-radius: 3px;
+        font: 600 14px 'Source Sans Pro', sans-serif;
+        font-stretch: normal;
+        letter-spacing: -0.1px;
+        border: none;
+        cursor: pointer;
+        float: right;
+        &-gray{
+          color:#5b616f;
+          background:#f2f3f7;
+        }
+        &-green{
+          background: #9bc837;
+          color: #ffffff;
+        }
+      }
+}

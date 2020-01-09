@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { AuthService } from '../services';
 
@@ -22,8 +22,10 @@ export class AuthGuard implements CanActivate {
     return this.checkLogin(url);
   }
 
-  private checkLogin(url: string): boolean | UrlTree {
-    if (this.authService.isAuthorized) { return true; }
+  private checkLogin(url: string): Observable<boolean | UrlTree> {
+    if (this.authService.isAuthorized) {
+      return of(true);
+    }
 
     // Store the attempted URL for redirecting
     this.authService.redirectUrl = url;
@@ -31,7 +33,7 @@ export class AuthGuard implements CanActivate {
     // Navigate to the login page, return UrlTree
     const loginPageUrlTree = this.router.parseUrl('/login');
 
-    return loginPageUrlTree;
+    return of(loginPageUrlTree);
   }
 
 }

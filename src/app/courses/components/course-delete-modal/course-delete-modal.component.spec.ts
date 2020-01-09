@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DeleteCourseDialogComponent } from './delete-course-dialog.component';
+import { CourseDeleteModalComponent } from './course-delete-modal.component';
 
-describe('DeleteCourseDialogComponent', () => {
-  let component: DeleteCourseDialogComponent;
-  let fixture: ComponentFixture<DeleteCourseDialogComponent>;
+describe('CourseDeleteModalComponent', () => {
+  let component: CourseDeleteModalComponent;
+  let fixture: ComponentFixture<CourseDeleteModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DeleteCourseDialogComponent ]
+      declarations: [ CourseDeleteModalComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DeleteCourseDialogComponent);
+    fixture = TestBed.createComponent(CourseDeleteModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

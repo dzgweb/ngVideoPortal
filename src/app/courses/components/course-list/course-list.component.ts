@@ -1,8 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 import { Observable, of, from, Subscription } from 'rxjs';
 
+import { CourseDeleteModalComponent } from '../course-delete-modal/course-delete-modal.component';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Course } from '../../models';
 import { CourseService } from '../../services';
@@ -27,7 +29,8 @@ export class CourseListComponent implements OnInit, OnDestroy {
   constructor(
     private courseService: CourseService,
     private filterPipe: FilterPipe,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -35,7 +38,7 @@ export class CourseListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-   // this.sub.unsubscribe();
+    // this.sub.unsubscribe();
   }
 
   // getFilterCourses(courses$: Observable<Array<Course>>, searchText: string): Observable<Array<Course>> {
@@ -51,10 +54,13 @@ export class CourseListComponent implements OnInit, OnDestroy {
   }
 
   onDeleteCourse(course: Course) {
-    this.courses$ = this.courseService.deleteCourse(course);
-    // this.courseService.deleteCourse(course).subscribe(() => {
-    //   this.courses$ = this.getFilterCourses(this.courseService.getCourses(), this.filterText);
-    // });
+    const dialog$ = this.openDialog(course);
+
+    dialog$.subscribe(confirm => {
+      if (confirm) {
+        this.courses$ = this.courseService.deleteCourse(course);
+      }
+    });
   }
 
   onLoadMore() {
@@ -67,7 +73,21 @@ export class CourseListComponent implements OnInit, OnDestroy {
     this.loadCourses();
   }
 
+  private openDialog(course: Course) {
+
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = { title: course.name };
+    dialogConfig.disableClose = true;
+    dialogConfig.width = '394px';
+
+    const dialogRef = this.dialog.open(CourseDeleteModalComponent, dialogConfig);
+
+    return dialogRef.afterClosed();
+  }
+
   private loadCourses() {
     this.courses$ = this.courseService.getCourses(this.currentPage, this.countCourses, this.searchText, this.sortBy);
   }
+
+
 }

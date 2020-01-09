@@ -1,28 +1,35 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {RouterModule} from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-import { LayoutRoutingModule } from './layout-routing.module';
-import {BreadcrumbsComponent, FooterComponent, HeaderComponent} from './components';
-import { PathNotFoundComponent } from './components/path-not-found/path-not-found.component';
+import {
+  BreadcrumbsComponent,
+  FooterComponent,
+  HeaderComponent,
+  LoaderComponent,
+  PathNotFoundComponent
+} from './components';
 
+const components = [
+  HeaderComponent,
+  FooterComponent,
+  BreadcrumbsComponent,
+  PathNotFoundComponent,
+  LoaderComponent
+];
 
 @NgModule({
   declarations: [
-    HeaderComponent,
-    FooterComponent,
-    BreadcrumbsComponent,
-    PathNotFoundComponent
+    ...components
   ],
   imports: [
     CommonModule,
     RouterModule,
-    LayoutRoutingModule
+    MatProgressSpinnerModule
   ],
   exports: [
-    HeaderComponent,
-    FooterComponent,
-    BreadcrumbsComponent
+    ...components
   ]
 })
 export class LayoutModule { }

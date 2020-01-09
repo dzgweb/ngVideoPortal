@@ -6,8 +6,8 @@
 					<img src="/assets/logo.svg" alt="Video Course" width="32" />
 				</a>
 			</div>
-			<div class="auth" *ngIf="user$ | async as user">
-				<div class="auth-user-login" *ngIf="user">{{user?.name.first}}</div>
+			<div class="auth" *ngIf="hasUserInfo">
+				<div class="auth-user-login" *ngIf="user$ | async as user">{{user?.name.first}}</div>
 				<a (click)="onLogout()" class="auth-log-off">Log off</a>
 			</div>
 		</div>

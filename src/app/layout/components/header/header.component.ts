@@ -1,25 +1,22 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, DoCheck } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Subscription, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { AuthService } from '../../../core';
-import { User, UserService } from '../../../users';
+import { User } from '../../../users';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, OnDestroy {
+export class HeaderComponent implements OnInit {
   public user$: Observable<User>;
-
-  // private sub: Subscription;
 
   constructor(
     private router: Router,
-    private authService: AuthService,
-    private userService: UserService
+    private authService: AuthService
   ) {}
 
   get hasUserInfo(): boolean {
@@ -27,12 +24,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.user$ = this.userService.getUser();
-    // this.sub = this.userService.getUser().subscribe((user: User) => this.user = user);
-  }
+    this.user$ = this.authService.userInfo$;
 
-  ngOnDestroy() {
-    // this.sub.unsubscribe();
+    if (this.hasUserInfo) {
+      this.authService.getUser().subscribe((user: User) => this.authService.userInfo.next(user));
+    }
   }
 
   onLogout(): void {

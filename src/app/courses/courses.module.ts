@@ -3,17 +3,30 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import {MatDialogModule} from '@angular/material/dialog';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { SharedModule } from '../shared/shared.module';
-import { MaterialModule } from '../material/material.module';
-import { CourseComponent, CourseListComponent, CourseFormComponent, CourseSearchComponent } from './components';
+import {
+  CourseComponent,
+  CourseListComponent,
+  CourseFormComponent,
+  CourseSearchComponent,
+  CourseDeleteModalComponent
+} from './components';
 
 import { CoursesRoutingModule } from './courses-routing.module';
 
+
 @NgModule({
-  declarations: [CourseListComponent, CourseComponent, CourseFormComponent, CourseSearchComponent],
+  declarations: [
+    CourseListComponent,
+    CourseComponent,
+    CourseFormComponent,
+    CourseSearchComponent,
+    CourseDeleteModalComponent
+  ],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -21,9 +34,10 @@ import { CoursesRoutingModule } from './courses-routing.module';
     FormsModule,
     FontAwesomeModule,
     SharedModule,
-    MaterialModule,
-    CoursesRoutingModule
+    CoursesRoutingModule,
+    MatDialogModule
   ],
-  exports: [CourseSearchComponent]
+  entryComponents: [CourseDeleteModalComponent],
+  exports: []
 })
 export class CoursesModule { }
