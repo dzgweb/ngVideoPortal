@@ -19,7 +19,7 @@ export class CourseListComponent implements OnInit, OnDestroy {
   public courses$: Observable<Course[]>;
   public faPlus = faPlus;
 
-  private sub: Subscription;
+  //private sub: Subscription;
 
   private currentPage = 0;
   private countCourses = 5;
