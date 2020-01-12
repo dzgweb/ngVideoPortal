@@ -22,7 +22,8 @@ const reducer = createReducer(
       ...state,
       data,
       loading: false,
-      loaded: true
+      loaded: true,
+      selectedCourse: null
     };
   }),
   on(CoursesActions.getCoursesError, (state, { error }) => {
@@ -37,26 +38,75 @@ const reducer = createReducer(
 
   on(CoursesActions.getCourse, state => {
     console.log('GET_COURSE action being handled!');
-    return { ...state };
+    return {
+      ...state,
+      loading: true,
+      loaded: false
+    };
   }),
-  on(CoursesActions.createCourse, state => {
-    console.log('CREATE_COURSE action being handled!');
-    return { ...state };
+  on(CoursesActions.getCourseSuccess, (state, { course }) => {
+    console.log('GET_COURSE_SUCCESS action being handled!');
+    const selectedCourse = { ...course };
+    return {
+      ...state,
+      loading: false,
+      loaded: true,
+      selectedCourse
+    };
   }),
-  on(CoursesActions.updateCourse, (state, { course }) => {
-    console.log('UPDATE_COURSE action being handled!');
+  on(CoursesActions.getCourseError, (state, { error }) => {
+    console.log('GET_COURSE_ERROR action being handled!');
+    return {
+      ...state,
+      loading: false,
+      loaded: false,
+      error
+    };
+  }),
+  on(CoursesActions.clearSelectCourse, state => {
+    console.log('CLEAR_SELECT_COURSE action being handled!');
+    return {
+      ...state,
+      selectedCourse: null
+    };
+  }),
 
-    const id = course.id;
-    const data = state.data.map(c => {
-      if (c.id === id) {
-        return course;
-      }
-      return c;
-    });
+
+  on(CoursesActions.createCourseSuccess, (state, { course }) => {
+    console.log('CREATE_COURSE_SUCCESS action being handled!');
+    const data = [...state.data, {...course}]
+    return {
+      ...state,
+      data
+    };
+  }),
+  on(CoursesActions.createCourseError, (state, { error }) => {
+    console.log('CREATE_COURSE_ERROR action being handled!');
+    return {
+      ...state,
+      error
+    };
+  }),
+
+  on(CoursesActions.updateCourseSuccess, (state, { course }) => {
+    console.log('UPDATE_COURSE_SUCCESS action being handled!');
+
+    const data = [...state.data];
+
+    const index = data.findIndex(c => c.id === course.id);
+
+    data[index] = { ...course };
 
     return {
       ...state,
       data
+    };
+  }),
+  on(CoursesActions.updateCourseError, (state, { error }) => {
+    console.log('UPDATE_COURSE_ERROR action being handled!');
+    return {
+      ...state,
+      error
     };
   }),
 

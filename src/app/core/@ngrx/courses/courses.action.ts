@@ -2,27 +2,33 @@ import { createAction, props } from '@ngrx/store';
 
 import { ICourse } from '../../../courses';
 
-export const getCourses = createAction('[Courses] GET_COURSES');
+export const getCourses = createAction(
+  '[Get Courses] GET_COURSES',
+  props<{ currentPage?: number, countCourses?: number, searchText?: string, sortBy?: string }>()
+);
 export const getCoursesSuccess = createAction(
-  '[Courses Effects] GET_COURSES_SUCCEESS',
+  '[Get Courses Effects] GET_COURSES_SUCCEESS',
   props<{ courses: ICourse[] }>()
 );
 export const getCoursesError = createAction(
-  '[Courses Effects] GET_COURSES_ERROR',
+  '[Get Courses Effects] GET_COURSES_ERROR',
   props<{ error: Error }>()
 );
 
 export const getCourse = createAction(
-  '[Courses] GET_COURSE',
+  '[Add/Edit Course (App)] GET_COURSE',
   props<{ courseID: number }>()
 );
 export const getCourseSuccess = createAction(
-  '[Courses Effects] GET_COURSE_SUCCESS',
+  '[Get Course Effects] GET_COURSE_SUCCESS',
   props<{ course: ICourse }>()
 );
 export const getCourseError = createAction(
-  '[Courses Effects] GET_COURSE_SUCCESS',
+  '[Get Course Effects] GET_COURSE_SUCCESS',
   props<{ error: Error | string }>()
+);
+export const clearSelectCourse = createAction(
+  '[Add/Edit clearSelectCourse (App)] GET_COURSE'
 );
 
 export const createCourse = createAction(

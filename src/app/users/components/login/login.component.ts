@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
+// @Ngrx
+import { Store, select } from '@ngrx/store';
+import { AppState } from './../../../core/@ngrx';
+import * as UsersActions from '../../../core/@ngrx/users';
+
 import { AuthService } from '../../../core/services';
 import { User} from '../../../users/models';
 
@@ -14,7 +19,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private store: Store<AppState>
   ) {}
 
   ngOnInit() {
@@ -24,20 +30,24 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(loginForm: NgForm) {
-    // Form model
-    // console.log(loginForm.form);
+    const loginData = {
+      login: loginForm.value.username,
+      password: loginForm.value.password,
+    };
 
-    this.authService
-      .login(loginForm.value.username, loginForm.value.password)
-      .subscribe(() => {
-        const redirectUrl = this.authService.redirectUrl;
+    this.store.dispatch(UsersActions.loginUser(loginData));
 
-        if (redirectUrl) {
-          this.authService.redirectUrl = null;
-          this.router.navigateByUrl(redirectUrl);
-        } else {
-          this.router.navigate(['courses']);
-        }
-      });
+    // this.authService
+    //   .login(loginForm.value.username, loginForm.value.password)
+    //   .subscribe(() => {
+    //     const redirectUrl = this.authService.redirectUrl;
+
+    //     if (redirectUrl) {
+    //       this.authService.redirectUrl = null;
+    //       this.router.navigateByUrl(redirectUrl);
+    //     } else {
+    //       this.router.navigate(['courses']);
+    //     }
+    //   });
   }
 }

@@ -12,7 +12,6 @@ import { Observable, of, from, Subscription } from 'rxjs';
 import { CourseDeleteModalComponent } from '../course-delete-modal/course-delete-modal.component';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { ICourse, Course } from '../../models';
-import { CourseService } from '../../services';
 import { FilterPipe } from '../../../shared/';
 
 @Component({
@@ -35,7 +34,6 @@ export class CourseListComponent implements OnInit {
   private sortBy: string;
 
   constructor(
-    private courseService: CourseService,
     private filterPipe: FilterPipe,
     private router: Router,
     private dialog: MatDialog,
@@ -43,10 +41,10 @@ export class CourseListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.loadCourses();
-    this.courses$ =  this.store.pipe(select(selectCoursesData));
-
-    this.store.dispatch(CoursesActions.getCourses());
+    this.courses$ = this.store.pipe(select(selectCoursesData));
+    this.coursesError$ = this.store.pipe(select(selectCoursesError));
+    // this.store.dispatch(CoursesActions.getCourses({}));
+    this.loadCourses();
   }
 
   onAddCourse() {
@@ -62,7 +60,6 @@ export class CourseListComponent implements OnInit {
 
     dialog$.subscribe(confirm => {
       if (confirm) {
-        // this.courses$ = this.courseService.deleteCourse(course);
         this.store.dispatch(CoursesActions.deleteCourse({ course }));
       }
     });
@@ -91,7 +88,9 @@ export class CourseListComponent implements OnInit {
   }
 
   private loadCourses() {
-    this.courses$ = this.courseService.getCourses(this.currentPage, this.countCourses, this.searchText, this.sortBy);
+    this.store.dispatch(CoursesActions.getCourses(
+      {currentPage: this.currentPage, countCourses: this.countCourses, searchText: this.searchText, sortBy: this.sortBy}
+    ));
   }
 
 }

@@ -60,12 +60,13 @@ export class CourseService {
       );
   }
 
-  deleteCourse(course: Course): Observable<Course[]> {
+  deleteCourse(course: Course): Observable<Course> {
     const url = `${this.coursesUrl}/${course.id}`;
 
-    return this.http.delete(url)
+    return this.http
+      .delete<Course>(url)
       .pipe(
-        concatMap(() => this.getCourses())
+        catchError( this.handleError )
       );
   }
 
