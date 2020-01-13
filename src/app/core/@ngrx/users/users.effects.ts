@@ -4,7 +4,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 
 import { of, Observable } from 'rxjs';
-import { concatMap, switchMap, mergeMap, map, catchError, pluck, tap} from 'rxjs/operators';
+import { concatMap, switchMap, mergeMap, map, catchError, pluck, tap, first} from 'rxjs/operators';
 
 import { AuthService } from '../../services';
 import { LoginResponse } from '../../models/loginResponse';
@@ -38,6 +38,7 @@ export class UsersEffects {
 
   logout$: Observable<Action> = createEffect(() => this.actions$.pipe(
     ofType(UsersAction.logout),
+    first(),
     tap(() => this.authService.logout()),
     tap(() => this.router.navigate(['login']))
    )
