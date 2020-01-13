@@ -15,7 +15,7 @@ const reducer = createReducer(
     console.log('LOGIN_USER_SUCCESS action being handled!');
     return {
       ...state,
-      error: ''
+      error: null
     };
   }),
   on(UsersAction.loginUserFail, state => {
@@ -23,6 +23,14 @@ const reducer = createReducer(
     return {
       ...state,
       error: 'Wrong login or password'
+    };
+  }),
+
+  on(UsersAction.logoutSuccess, state => {
+    console.log('LOGOUT_SUCCESS action being handled!');
+    return {
+      ...state,
+      user: null
     };
   }),
 

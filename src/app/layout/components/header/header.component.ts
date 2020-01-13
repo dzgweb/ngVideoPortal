@@ -34,6 +34,8 @@ export class HeaderComponent implements OnInit {
 
     if (this.hasUserInfo) {
       this.authService.getUser().subscribe((user: User) => this.authService.userInfo.next(user));
+
+      this.store.dispatch(UsersActions.getUser());
     }
   }
 
