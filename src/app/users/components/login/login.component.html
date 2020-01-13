@@ -1,8 +1,13 @@
 <div class="login">
-  <h1>Login</h1>
+
+  <div class="form-group-label">
+    <h1>Login</h1>
+    <div *ngIf="loginError$ | async as errorMessage" class="error-message">{{errorMessage}}</div>
+  </div>
+
   <form 
       #loginForm="ngForm" 
-      (ngSubmit)="onLogin(loginForm)">
+      (ngSubmit)="onLogin(loginForm)">      
       <div class="form-group">
         <div class="form-group-label">
           <label for="inputEmail">Email:</label>
@@ -15,9 +20,9 @@
           aria-describedby="emailHelp" 
           placeholder="Enter email"
           name="username" 	
-          required
+          required 
           [(ngModel)]="username" 
-        >         
+          >            
       </div>
       <div class="form-group">
         <div class="form-group-label">

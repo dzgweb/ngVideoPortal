@@ -3,14 +3,26 @@ import { Action, createReducer, on } from '@ngrx/store';
 import { UsersState, initialUsersState } from './users.state';
 import * as UsersAction from './users.actions';
 
-
 const reducer = createReducer(
   initialUsersState,
-  on(UsersAction.loginUserSuccess, (state, { token }) => {
-    console.log('GET_COURSES action being handled!');
+  on(UsersAction.loginUser, state => {
+    console.log('LOGIN_USER action being handled!');
     return {
       ...state,
-      token
+    };
+  }),
+  on(UsersAction.loginUserSuccess, (state, { token }) => {
+    console.log('LOGIN_USER_SUCCESS action being handled!');
+    return {
+      ...state,
+      error: ''
+    };
+  }),
+  on(UsersAction.loginUserFail, state => {
+    console.log('LOGIN_USER_FAIL action being handled!');
+    return {
+      ...state,
+      error: 'Wrong login or password'
     };
   }),
 );

@@ -7,6 +7,7 @@ import { of, Observable } from 'rxjs';
 import { concatMap, switchMap, mergeMap, map, catchError, pluck, tap} from 'rxjs/operators';
 
 import { AuthService } from '../../services';
+import { LoginResponse } from '../../models/loginResponse';
 import * as UsersAction from './users.actions';
 
 @Injectable()
@@ -22,8 +23,9 @@ export class UsersEffects {
     ofType(UsersAction.loginUser),
     mergeMap(action => this.authService.login(action.login, action.password)
       .pipe(
-        map(response => UsersAction.loginUserSuccess(response)),
-        catchError(error => of(UsersAction.loginUserFail({ error })))
+        tap(response => console.log(response)),
+        map((response: LoginResponse) => UsersAction.loginUserSuccess(response)),
+        catchError(error => of(UsersAction.loginUserFail())) // of(UsersAction.loginUserFail({ error }))
       ))
     )
   );

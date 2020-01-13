@@ -32,8 +32,7 @@ export class AuthService {
       password
     };
 
-    return this.http
-      .post(LOGIN_ENDPOINT, loginPayload)
+    return this.http.post<LoginResponse>(LOGIN_ENDPOINT, loginPayload)
       .pipe(
         tap(({ token }: LoginResponse) => {
           this.storeAuthToken(token);
