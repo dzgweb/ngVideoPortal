@@ -58,11 +58,11 @@ export class AuthService {
     }
   }
 
-  private storeAuthToken(token: string) {
+  storeAuthToken(token: string) {
     localStorage.setItem('authToken', token);
   }
 
-  private clearAuthToken(): void {
+  clearAuthToken(): void {
     localStorage.removeItem('authToken');
   }
 

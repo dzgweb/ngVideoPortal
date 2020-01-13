@@ -18,6 +18,9 @@ export const loginUserFail = createAction(
 export const logout = createAction(
   '[Logout user] Logout user'
 );
+export const logoutSuccess = createAction(
+  '[Logout user Effect] Logout Success user'
+);
 
 export const getUser = createAction(
   '[Login Page Effect] Get user'
@@ -26,4 +29,10 @@ export const setUser = createAction(
   '[Login Page Effect] Set user',
   props<{ user: User }>()
 );
-
+export const setUserSuccess = createAction(
+  '[Logout user Effect] Set user Error'
+);
+export const setUserError = createAction(
+  '[Logout user Effect] Set user Error',
+  props<{ error: Error | string }>()
+);

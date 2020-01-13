@@ -74,7 +74,7 @@ const reducer = createReducer(
 
   on(CoursesActions.createCourseSuccess, (state, { course }) => {
     console.log('CREATE_COURSE_SUCCESS action being handled!');
-    const data = [...state.data, {...course}]
+    const data = [...state.data, {...course}];
     return {
       ...state,
       data

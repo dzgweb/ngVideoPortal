@@ -41,19 +41,19 @@ export class LoginComponent implements OnInit {
       password: loginForm.value.password,
     };
 
-    // this.store.dispatch(UsersActions.loginUser(loginData));
+    this.store.dispatch(UsersActions.loginUser(loginData));
 
-    this.authService
-      .login(loginForm.value.username, loginForm.value.password)
-      .subscribe(() => {
-        const redirectUrl = this.authService.redirectUrl;
+    // this.authService
+    //   .login(loginForm.value.username, loginForm.value.password)
+    //   .subscribe(() => {
+    //     const redirectUrl = this.authService.redirectUrl;
 
-        if (redirectUrl) {
-          this.authService.redirectUrl = null;
-          this.router.navigateByUrl(redirectUrl);
-        } else {
-          this.router.navigate(['courses']);
-        }
-      });
+    //     if (redirectUrl) {
+    //       this.authService.redirectUrl = null;
+    //       this.router.navigateByUrl(redirectUrl);
+    //     } else {
+    //       this.router.navigate(['courses']);
+    //     }
+    //   });
   }
 }

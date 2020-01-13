@@ -25,6 +25,14 @@ const reducer = createReducer(
       error: 'Wrong login or password'
     };
   }),
+
+  on(UsersAction.setUser, (state, { user }) => {
+    console.log('LOGIN_USER_FAIL action being handled!');
+    return {
+      ...state,
+      user
+    };
+  }),
 );
 
 export function usersReducer(state: UsersState | undefined, action: Action) {
