@@ -1,39 +1,55 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 import { switchMap } from 'rxjs/operators';
-import {of, Subscription} from 'rxjs';
+import { of, Subscription, Observable } from 'rxjs';
 
-import { Course } from '../../models';
-import { CourseService } from '../../services';
+// @Ngrx
+import { Store, select } from '@ngrx/store';
+import { AppState, selectSelectedCourse } from './../../../core/@ngrx';
+import * as CoursesActions from '../../../core/@ngrx/courses/courses.action';
+
+import { Course, ICourse } from '../../models';
 
 @Component({
   selector: 'app-course-form',
   templateUrl: './course-form.component.html',
   styleUrls: ['./course-form.component.scss']
 })
-export class CourseFormComponent implements OnInit {
-  public course: Course;
+export class CourseFormComponent implements OnInit, OnDestroy {
+  public course: ICourse;
+  // public course$: Observable<Readonly<ICourse>>;
   private sub: Subscription;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private courseService: CourseService
+    private store: Store<AppState>
   ) {}
 
   ngOnInit() {
-    this.course = new Course();
+    this.sub = this.store.pipe(select(selectSelectedCourse))
+      .subscribe (course => {
+        if (course) {
+          this.course = course;
+        } else {
+          this.course = new Course();
+        }
+      });
 
+    // it is not necessary to save subscription to route.paramMap
+    // when router destroys this component, it handles subscriptions automatically
     this.route.paramMap
-      .pipe(
-        switchMap((params: ParamMap) => {
-          return params.get('id')
-            ? this.courseService.getCourse(+params.get('id'))
-            : of(null);
-        })
-      )
-      .subscribe(course => (this.course = { ...course }), err => console.log(err));
+      .subscribe((params: ParamMap) => {
+        const id = params.get('id');
+        if (id) {
+          this.store.dispatch(CoursesActions.getCourse({ courseID: +id }));
+        }
+      });
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
   onCancel() {
@@ -41,14 +57,13 @@ export class CourseFormComponent implements OnInit {
   }
 
   onSave() {
-    const course = { ...this.course };
+    const course = { ...this.course } as ICourse;
 
-    const method = course.id ? 'updateCourse' : 'createCourse';
-    this.sub = this.courseService[method](course)
-      .subscribe(() => {
-          this.onGoBack();
-        }
-      );
+    if (course.id) {
+      this.store.dispatch(CoursesActions.updateCourse({ course }));
+    } else {
+      this.store.dispatch(CoursesActions.createCourse({ course }));
+    }
   }
 
   onGoBack(): void {

@@ -8,6 +8,8 @@
     Add course
   </button> <!-- (click)="onAddCourse()" -->
 
+  <p *ngIf="(coursesError$ | async) as value">{{value}}</p>
+
   <div class="course-list" *ngIf="(courses$ | async) as courses">
     <div class="msg-no-courses" *ngIf="!courses.length; else coursesList">
       <h3>No data. Feel free to add new course</h3>

@@ -2,12 +2,16 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
+// @Ngrx
+import { Store, select } from '@ngrx/store';
+import { AppState, selectCoursesData, selectCoursesError } from './../../../core/@ngrx';
+import * as CoursesActions from '../../../core/@ngrx/courses/courses.action';
+
 import { Observable, of, from, Subscription } from 'rxjs';
 
 import { CourseDeleteModalComponent } from '../course-delete-modal/course-delete-modal.component';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { Course } from '../../models';
-import { CourseService } from '../../services';
+import { ICourse, Course } from '../../models';
 import { FilterPipe } from '../../../shared/';
 
 @Component({
@@ -15,8 +19,11 @@ import { FilterPipe } from '../../../shared/';
   templateUrl: './course-list.component.html',
   styleUrls: ['./course-list.component.scss']
 })
-export class CourseListComponent implements OnInit, OnDestroy {
-  public courses$: Observable<Course[]>;
+export class CourseListComponent implements OnInit {
+  // public courses$: Observable<Course[]>;
+  public courses$: Observable<ReadonlyArray<ICourse>>;
+  public coursesError$: Observable<Error | string>;
+
   public faPlus = faPlus;
 
   //private sub: Subscription;
@@ -27,23 +34,18 @@ export class CourseListComponent implements OnInit, OnDestroy {
   private sortBy: string;
 
   constructor(
-    private courseService: CourseService,
     private filterPipe: FilterPipe,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private store: Store<AppState>
   ) {}
 
   ngOnInit() {
+    this.courses$ = this.store.pipe(select(selectCoursesData));
+    this.coursesError$ = this.store.pipe(select(selectCoursesError));
+    // this.store.dispatch(CoursesActions.getCourses({}));
     this.loadCourses();
   }
-
-  ngOnDestroy() {
-    // this.sub.unsubscribe();
-  }
-
-  // getFilterCourses(courses$: Observable<Array<Course>>, searchText: string): Observable<Array<Course>> {
-  //   return this.filterPipe.transform(courses$, searchText);
-  // }
 
   onAddCourse() {
     this.router.navigate(['courses/new']);
@@ -58,7 +60,7 @@ export class CourseListComponent implements OnInit, OnDestroy {
 
     dialog$.subscribe(confirm => {
       if (confirm) {
-        this.courses$ = this.courseService.deleteCourse(course);
+        this.store.dispatch(CoursesActions.deleteCourse({ course }));
       }
     });
   }
@@ -86,8 +88,9 @@ export class CourseListComponent implements OnInit, OnDestroy {
   }
 
   private loadCourses() {
-    this.courses$ = this.courseService.getCourses(this.currentPage, this.countCourses, this.searchText, this.sortBy);
+    this.store.dispatch(CoursesActions.getCourses(
+      {currentPage: this.currentPage, countCourses: this.countCourses, searchText: this.searchText, sortBy: this.sortBy}
+    ));
   }
-
 
 }

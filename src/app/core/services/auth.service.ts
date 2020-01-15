@@ -32,8 +32,7 @@ export class AuthService {
       password
     };
 
-    return this.http
-      .post(LOGIN_ENDPOINT, loginPayload)
+    return this.http.post<LoginResponse>(LOGIN_ENDPOINT, loginPayload)
       .pipe(
         tap(({ token }: LoginResponse) => {
           this.storeAuthToken(token);
@@ -59,11 +58,11 @@ export class AuthService {
     }
   }
 
-  private storeAuthToken(token: string) {
+  storeAuthToken(token: string) {
     localStorage.setItem('authToken', token);
   }
 
-  private clearAuthToken(): void {
+  clearAuthToken(): void {
     localStorage.removeItem('authToken');
   }
 
