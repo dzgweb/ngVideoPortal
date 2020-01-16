@@ -1,19 +1,19 @@
 <div class="course-edit">
   <h1>New course</h1>
-  <form
-    #courseForm="ngForm">
+  <form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <div class="form-group-label">
-        <label for="title">Title:</label>
+        <label for="name">Title:</label>
         <div class="required">*required</div>
       </div>
       <input
         type="text"
         class="form-control"
-        id="title"
+        id="name"
         placeholder="Course title"
-        name="title"
-        [(ngModel)]="course.name">
+        name="name"
+        formControlName="name"
+        >  <!-- [(ngModel)]="course.name" -->
     </div>
     <div class="form-group">
       <div class="form-group-label">
@@ -24,8 +24,9 @@
         class="form-control"
         placeholder="Add description"
         name="description"
-        [(ngModel)]="course.description">
-            </textarea>
+        formControlName="description"
+        >
+        </textarea>  <!-- [(ngModel)]="course.description" -->
     </div>
     <div class="form-group">
       <div class="form-group-short">
@@ -36,10 +37,11 @@
         <input
           type="number"
           class="form-control"
-          id="duration"
+          id="length"
           placeholder="minutes"
-          name="duration"
-          [(ngModel)]="course.length">
+          name="length"
+          formControlName="length"
+          > <!-- [(ngModel)]="course.length" -->
       </div>
       <div class="duration-with-pipe">{{course.length | duration }}</div>
     </div>
@@ -71,11 +73,12 @@
         class="form-control"
         id="authors"
         placeholder="Start typing"
-        name="authors">
+        name="authors"
+        formControlName="authors">
     </div>
     <div class="form-group form-group-btn">
       <button type="button" class="btn btn-gray" (click)="onCancel()">Cancel</button>
-      <button type="submit" class="btn btn-green" (click)="onSave()">Save</button>
+      <button type="submit" class="btn btn-green" [disabled]="!courseForm.valid">Save</button>
     </div>
   </form>
 </div>

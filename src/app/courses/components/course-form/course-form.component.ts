@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { FormBuilder, Validators } from '@angular/forms';
 
 import { switchMap } from 'rxjs/operators';
 import { of, Subscription, Observable } from 'rxjs';
@@ -21,10 +22,19 @@ export class CourseFormComponent implements OnInit, OnDestroy {
   // public course$: Observable<Readonly<ICourse>>;
   private sub: Subscription;
 
+  courseForm = this.fb.group({
+    name: ['', [Validators.required, Validators.maxLength(50)]],
+    description: ['', [Validators.required, Validators.maxLength(500)]],
+    length: [null, [Validators.required, Validators.min(1)]],
+    date: [null, Validators.required],
+    authors: [[], Validators.required]
+  });
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private fb: FormBuilder
   ) {}
 
   ngOnInit() {
@@ -54,6 +64,11 @@ export class CourseFormComponent implements OnInit, OnDestroy {
 
   onCancel() {
     this.onGoBack();
+  }
+
+  onSubmit() {
+    // TODO: Use EventEmitter with form value
+    console.warn(this.courseForm.value);
   }
 
   onSave() {
