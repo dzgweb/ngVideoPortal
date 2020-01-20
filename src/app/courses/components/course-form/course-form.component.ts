@@ -42,13 +42,12 @@ export class CourseFormComponent implements OnInit, OnDestroy {
       .subscribe (course => {
         if (course) {
           this.course = course;
+          this.setCourse(course);
         } else {
           this.course = new Course();
         }
       });
 
-    // it is not necessary to save subscription to route.paramMap
-    // when router destroys this component, it handles subscriptions automatically
     this.route.paramMap
       .subscribe((params: ParamMap) => {
         const id = params.get('id');
@@ -67,14 +66,12 @@ export class CourseFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    // TODO: Use EventEmitter with form value
     console.warn(this.courseForm.value);
-  }
 
-  onSave() {
-    const course = { ...this.course } as ICourse;
+    const courseForm = this.getCourse();
+    const course = { ...courseForm } as ICourse; // need a plain object to dispatch
 
-    if (course.id) {
+    if (this.course.id) {
       this.store.dispatch(CoursesActions.updateCourse({ course }));
     } else {
       this.store.dispatch(CoursesActions.createCourse({ course }));
@@ -83,5 +80,29 @@ export class CourseFormComponent implements OnInit, OnDestroy {
 
   onGoBack(): void {
     this.router.navigate(['/courses']);
+  }
+
+  private setCourse(course: ICourse) {
+    this.courseForm.setValue({
+      name: course.name,
+      description: course.description,
+      length: course.length,
+      date: course.date,
+      authors: []
+    });
+  }
+
+  private getCourse(): Course {
+    const { name, description, length, date, authors } = this.courseForm.value;
+
+    return new Course(
+      this.course.id || null,
+      name,
+      date,
+      length,
+      description,
+      authors,
+      this.course.isTopRated
+    );
   }
 }

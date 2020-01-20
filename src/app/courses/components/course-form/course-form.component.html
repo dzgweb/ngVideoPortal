@@ -1,7 +1,8 @@
 <div class="course-edit">
   <h1>New course</h1>
   <form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
+    <div class="form-group" 
+      [ngClass]="{'has-error': (courseForm.get('name').touched || courseForm.get('name').dirty) && !courseForm.get('name').valid }">
       <div class="form-group-label">
         <label for="name">Title:</label>
         <div class="required">*required</div>
@@ -12,56 +13,78 @@
         id="name"
         placeholder="Course title"
         name="name"
-        formControlName="name"
-        >  <!-- [(ngModel)]="course.name" -->
+        formControlName="name"> 
+        <span class="error-message" *ngIf="(courseForm.get('name').touched || courseForm.get('name').dirty) && courseForm.get('name').errors">
+          <span *ngIf="courseForm.get('name').hasError('required')">
+            Please enter a course name.
+          </span>
+          <span *ngIf="courseForm.get('name').hasError('maxlength')">
+            The name mustn't be longer than 50 symbols.
+          </span>
+        </span> 
     </div>
-    <div class="form-group">
+    <div class="form-group" 
+      [ngClass]="{'has-error': (courseForm.get('description').touched || courseForm.get('description').dirty) && !courseForm.get('description').valid }">
       <div class="form-group-label">
-        <label for="title">Description:</label>
+        <label for="title">Description:</label>        
         <div class="required">*required</div>
       </div>
       <textarea
         class="form-control"
         placeholder="Add description"
         name="description"
-        formControlName="description"
-        >
-        </textarea>  <!-- [(ngModel)]="course.description" -->
+        formControlName="description">
+      </textarea>  
+      <span class="error-message" *ngIf="(courseForm.get('description').touched || courseForm.get('description').dirty) && courseForm.get('description').errors">
+        <span *ngIf="courseForm.get('description').hasError('required')">
+          Please enter course description.
+        </span>
+        <span *ngIf="courseForm.get('description').hasError('maxlength')">
+          The course description mustn't be longer than 500 symbols.
+        </span>
+      </span>
     </div>
-    <div class="form-group">
+    <div class="form-group" 
+      [ngClass]="{'has-error': (courseForm.get('length').touched || courseForm.get('length').dirty) && !courseForm.get('length').valid }">
       <div class="form-group-short">
         <div class="form-group-label">
           <label for="title">Duration:</label>
           <div class="required">*required</div>
         </div>
-        <input
-          type="number"
-          class="form-control"
-          id="length"
-          placeholder="minutes"
-          name="length"
-          formControlName="length"
-          > <!-- [(ngModel)]="course.length" -->
+        
+        <app-duration formControlName="length"></app-duration>
+
+          <span class="error-message" *ngIf="(courseForm.get('length').touched || courseForm.get('length').dirty) && courseForm.get('length').errors">
+            <span *ngIf="courseForm.get('length').hasError('required')">
+              Please enter the duration.
+            </span>
+          </span>
       </div>
-      <div class="duration-with-pipe">{{course.length | duration }}</div>
+      <div class="duration-with-pipe">{{courseForm.controls.length.value | duration }}</div>
     </div>
-    <div class="form-group">
+    <div class="form-group" 
+      [ngClass]="{'has-error': (courseForm.get('date').touched || courseForm.get('date').dirty) && !courseForm.get('date').valid }">
       <div class="form-group-short">
         <div class="form-group-label">
           <label for="title">Date:</label>
           <div class="required">*required</div>
         </div>
         <input
-          type="date"
+          type="text"
           class="form-control input-date"
           id="date"
           placeholder="mm-dd-yyyy"
           name="date"
-          [value]="course.date | date:'yyyy-MM-dd'"
-          (input)="course.date = $event.target.value">
+          formControlName="date">
+          <span class="error-message" *ngIf="(courseForm.get('date').touched || courseForm.get('date').dirty) && courseForm.get('date').errors">
+            <span *ngIf="courseForm.get('date').hasError('required')">
+              Please enter the date.
+            </span>
+          </span>
       </div>
     </div>
-    <div class="form-group form-group-authors">
+    <div class="form-group form-group-authors" 
+      [ngClass]="{'has-error': (courseForm.get('authors').touched || courseForm.get('authors').dirty) && !courseForm.get('authors').valid }">
       <div class="form-group">
         <div class="form-group-label">
           <label for="title">Authors:</label>
@@ -75,10 +98,15 @@
         placeholder="Start typing"
         name="authors"
         formControlName="authors">
+        <span class="error-message" *ngIf="(courseForm.get('authors').touched || courseForm.get('authors').dirty) && courseForm.get('authors').errors">
+          <span *ngIf="courseForm.get('authors').hasError('required')">
+            Please enter course's authors.
+          </span>
+        </span>
     </div>
     <div class="form-group form-group-btn">
       <button type="button" class="btn btn-gray" (click)="onCancel()">Cancel</button>
-      <button type="submit" class="btn btn-green" [disabled]="!courseForm.valid">Save</button>
+      <button type="submit" class="btn btn-green" [disabled]="!courseForm.valid">Save</button> <!-- (click)="onSave()"-->
     </div>
   </form>
 </div>

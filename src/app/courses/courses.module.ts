@@ -18,6 +18,8 @@ import {
 } from './components';
 
 import { CoursesRoutingModule } from './courses-routing.module';
+import { DatapickerComponent } from './components/course-form/datapicker/datapicker.component';
+import { DurationComponent } from './components/course-form/duration/duration.component';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { CoursesRoutingModule } from './courses-routing.module';
     CourseComponent,
     CourseFormComponent,
     CourseSearchComponent,
-    CourseDeleteModalComponent
+    CourseDeleteModalComponent,
+    DatapickerComponent,
+    DurationComponent
   ],
   imports: [
     CommonModule,
