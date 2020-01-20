@@ -50,17 +50,18 @@
         <div class="form-group-label">
           <label for="title">Duration:</label>
           <div class="required">*required</div>
-        </div>
-        
+        </div>        
         <app-duration formControlName="length"></app-duration>
-
-          <span class="error-message" *ngIf="(courseForm.get('length').touched || courseForm.get('length').dirty) && courseForm.get('length').errors">
-            <span *ngIf="courseForm.get('length').hasError('required')">
-              Please enter the duration.
-            </span>
+        <span class="error-message" *ngIf="(courseForm.get('length').touched || courseForm.get('length').dirty) && courseForm.get('length').errors">
+          <span *ngIf="courseForm.get('length').hasError('required')">
+            Please enter the duration.
           </span>
+          <span *ngIf="courseForm.get('length').errors.isNumbers">
+            Only numbers allow.
+          </span>
+        </span>
       </div>
-      <div class="duration-with-pipe">{{courseForm.controls.length.value | duration }}</div>
+      <div class="duration-with-pipe" *ngIf="!courseForm.get('length').hasError('isNumbers')">{{courseForm.controls.length.value | duration }}</div>
     </div>
     <div class="form-group" 
       [ngClass]="{'has-error': (courseForm.get('date').touched || courseForm.get('date').dirty) && !courseForm.get('date').valid }">
@@ -79,6 +80,9 @@
           <span class="error-message" *ngIf="(courseForm.get('date').touched || courseForm.get('date').dirty) && courseForm.get('date').errors">
             <span *ngIf="courseForm.get('date').hasError('required')">
               Please enter the date.
+            </span>
+            <span *ngIf="courseForm.get('date').errors.isNumbers">
+              Please ente number.
             </span>
           </span>
       </div>
@@ -106,7 +110,7 @@
     </div>
     <div class="form-group form-group-btn">
       <button type="button" class="btn btn-gray" (click)="onCancel()">Cancel</button>
-      <button type="submit" class="btn btn-green" [disabled]="!courseForm.valid">Save</button> <!-- (click)="onSave()"-->
+      <button type="submit" class="btn btn-green" [disabled]="!courseForm.valid">Save</button> 
     </div>
   </form>
 </div>

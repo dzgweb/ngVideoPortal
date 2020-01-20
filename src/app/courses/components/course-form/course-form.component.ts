@@ -11,6 +11,7 @@ import { AppState, selectSelectedCourse } from './../../../core/@ngrx';
 import * as CoursesActions from '../../../core/@ngrx/courses/courses.action';
 
 import { Course, ICourse } from '../../models';
+import { ValidateIsNumbers } from './../../../core/validators/custom.validators';
 
 @Component({
   selector: 'app-course-form',
@@ -25,9 +26,9 @@ export class CourseFormComponent implements OnInit, OnDestroy {
   courseForm = this.fb.group({
     name: ['', [Validators.required, Validators.maxLength(50)]],
     description: ['', [Validators.required, Validators.maxLength(500)]],
-    length: [null, [Validators.required, Validators.min(1)]],
+    length: [null, [Validators.required, Validators.min(1), ValidateIsNumbers]],
     date: [null, Validators.required],
-    authors: [[], Validators.required]
+    authors: [[]]
   });
 
   constructor(
