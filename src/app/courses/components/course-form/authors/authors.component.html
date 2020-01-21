@@ -1,0 +1,24 @@
+
+  <div class="selected-option-box" *ngFor="let selectedOption of selectedOptions; index as i;">
+    <span class="base-font">
+      {{selectedOption.label}}
+    </span>
+
+    <img class="remove" src="assets/img/cross.png" (click)="onOptionDeselected(i)">
+  </div>
+
+
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Start typing"
+    #authorsInput
+    matInput 
+    [matAutocomplete]="auto">
+
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option *ngFor="let option of options" [value]="option.name">
+      {{option.name}}
+    </mat-option>
+  </mat-autocomplete>
+

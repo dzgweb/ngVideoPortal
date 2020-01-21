@@ -19,9 +19,9 @@ import { UsersStoreModule } from './users/users-store.module';
       // metaReducers,
       runtimeChecks: {
         // strictStateImmutability: true,
-        // strictActionImmutability: true,
-        // strictStateSerializability: true,
-        // strictActionSerializability: true
+        strictActionImmutability: true,
+        strictStateSerializability: true,
+        strictActionSerializability: true
       }
     }),
     EffectsModule.forRoot([]),

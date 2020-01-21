@@ -10,7 +10,8 @@ import { Store, select } from '@ngrx/store';
 import { AppState, selectSelectedCourse } from './../../../core/@ngrx';
 import * as CoursesActions from '../../../core/@ngrx/courses/courses.action';
 
-import { Course, ICourse } from '../../models';
+import { Course, ICourse, Author, AuthorOptions } from '../../models';
+import { AuthorsService } from '../../../core/services';
 import { ValidateIsNumbers } from './../../../core/validators/custom.validators';
 
 @Component({
@@ -20,8 +21,8 @@ import { ValidateIsNumbers } from './../../../core/validators/custom.validators'
 })
 export class CourseFormComponent implements OnInit, OnDestroy {
   public course: ICourse;
-  // public course$: Observable<Readonly<ICourse>>;
   private sub: Subscription;
+  public authorOptions$: Observable<AuthorOptions[]>;
 
   courseForm = this.fb.group({
     name: ['', [Validators.required, Validators.maxLength(50)]],
@@ -35,7 +36,8 @@ export class CourseFormComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private store: Store<AppState>,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private authorsService: AuthorsService
   ) {}
 
   ngOnInit() {
@@ -56,6 +58,8 @@ export class CourseFormComponent implements OnInit, OnDestroy {
           this.store.dispatch(CoursesActions.getCourse({ courseID: +id }));
         }
       });
+
+    this.authorOptions$ = this.authorsService.getAuthors();
   }
 
   ngOnDestroy() {
@@ -89,8 +93,15 @@ export class CourseFormComponent implements OnInit, OnDestroy {
       description: course.description,
       length: course.length,
       date: course.date,
-      authors: []
+      authors: this.mapAuthorsToSelectOptions(course.authors)
     });
+  }
+
+  private mapAuthorsToSelectOptions(authors: Author[]): AuthorOptions[] {
+    return authors.map(author => ({
+      id: author.id,
+      label: `${author.name} ${author.lastName}`,
+    }));
   }
 
   private getCourse(): Course {
