@@ -1,12 +1,14 @@
 <div class="course-edit">
   <h1>New course</h1>
   <form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
+
     <div class="form-group" 
       [ngClass]="{'has-error': (courseForm.get('name').touched || courseForm.get('name').dirty) && !courseForm.get('name').valid }">
       <div class="form-group-label">
         <label for="name">Title:</label>
         <div class="required">*required</div>
       </div>
+
       <input
         type="text"
         class="form-control"
@@ -14,6 +16,7 @@
         placeholder="Course title"
         name="name"
         formControlName="name"> 
+
         <span class="error-message" *ngIf="(courseForm.get('name').touched || courseForm.get('name').dirty) && courseForm.get('name').errors">
           <span *ngIf="courseForm.get('name').hasError('required')">
             Please enter a course name.
@@ -23,18 +26,21 @@
           </span>
         </span> 
     </div>
+
     <div class="form-group" 
       [ngClass]="{'has-error': (courseForm.get('description').touched || courseForm.get('description').dirty) && !courseForm.get('description').valid }">
       <div class="form-group-label">
         <label for="title">Description:</label>        
         <div class="required">*required</div>
       </div>
+
       <textarea
         class="form-control"
         placeholder="Add description"
         name="description"
         formControlName="description">
       </textarea>  
+
       <span class="error-message" *ngIf="(courseForm.get('description').touched || courseForm.get('description').dirty) && courseForm.get('description').errors">
         <span *ngIf="courseForm.get('description').hasError('required')">
           Please enter course description.
@@ -44,14 +50,20 @@
         </span>
       </span>
     </div>
+
     <div class="form-group" 
       [ngClass]="{'has-error': (courseForm.get('length').touched || courseForm.get('length').dirty) && !courseForm.get('length').valid }">
       <div class="form-group-short">
         <div class="form-group-label">
           <label for="title">Duration:</label>
           <div class="required">*required</div>
-        </div>        
-        <app-duration formControlName="length"></app-duration>
+        </div>   
+
+        <app-duration 
+          formControlName="length"
+          [invalid]="!courseForm.get('length').valid">
+        </app-duration>
+
         <span class="error-message" *ngIf="(courseForm.get('length').touched || courseForm.get('length').dirty) && courseForm.get('length').errors">
           <span *ngIf="courseForm.get('length').hasError('required')">
             Please enter the duration.
@@ -60,9 +72,11 @@
             Only numbers allow.
           </span>
         </span>
+
       </div>
       <div class="duration-with-pipe" *ngIf="!courseForm.get('length').hasError('isNumbers')">{{courseForm.controls.length.value | duration }}</div>
     </div>
+
     <div class="form-group" 
       [ngClass]="{'has-error': (courseForm.get('date').touched || courseForm.get('date').dirty) && !courseForm.get('date').valid }">
       <div class="form-group-short">
@@ -70,13 +84,19 @@
           <label for="title">Date:</label>
           <div class="required">*required</div>
         </div>
-        <input
+
+        <!-- <input
           type="text"
           class="form-control input-date"
           id="date"
           placeholder="mm-dd-yyyy"
           name="date"
-          formControlName="date">
+          formControlName="date"> -->
+          <app-datepicker 
+            formControlName="date" 
+            [invalid]="!courseForm.get('date').valid">
+          </app-datepicker>
+
           <span class="error-message" *ngIf="(courseForm.get('date').touched || courseForm.get('date').dirty) && courseForm.get('date').errors">
             <span *ngIf="courseForm.get('date').hasError('required')">
               Please enter the date.
@@ -87,6 +107,7 @@
           </span>
       </div>
     </div>
+
     <div class="form-group form-group-authors" 
       [ngClass]="{'has-error': (courseForm.get('authors').touched || courseForm.get('authors').dirty) && !courseForm.get('authors').valid }">
       <div class="form-group">
@@ -108,6 +129,7 @@
           </span>
         </span>
     </div>
+
     <div class="form-group form-group-btn">
       <button type="button" class="btn btn-gray" (click)="onCancel()">Cancel</button>
       <button type="submit" class="btn btn-green" [disabled]="!courseForm.valid">Save</button> 

@@ -1,6 +1,6 @@
-import { Component, forwardRef } from '@angular/core';
+import { Component, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { on } from '@ngrx/store';
+
 
 @Component({
   selector: 'app-duration',
@@ -17,6 +17,7 @@ import { on } from '@ngrx/store';
 export class DurationComponent implements ControlValueAccessor {
 
   value: number;
+  @Input() invalid?: boolean;
 
   writeValue(value: number) {
     if (value !== undefined) {

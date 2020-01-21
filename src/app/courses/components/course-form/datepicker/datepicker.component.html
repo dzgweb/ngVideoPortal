@@ -1,0 +1,13 @@
+<input
+  type="text"
+  class="form-control input-date"
+  [class.invalid]="invalid"
+  id="date"
+  placeholder="mm-dd-yyyy"
+  name="date"
+  [value]="value"
+  [matDatepicker]="dateInput"
+  (dateInput)="onInput($event)">
+
+<mat-datepicker-toggle matSuffix [for]="dateInput"></mat-datepicker-toggle>
+<mat-datepicker #dateInput></mat-datepicker>
