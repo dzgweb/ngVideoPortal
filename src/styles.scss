@@ -122,3 +122,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   }
 }
 
+.mat-autocomplete-panel{
+  min-width: 170px !important;
+}

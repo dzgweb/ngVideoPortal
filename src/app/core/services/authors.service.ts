@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { AuthorOptions } from '../../courses/models';
+import { Author } from '../../courses/models';
 import { AUTHORS_ENDPOINT } from './../config';
 
 @Injectable({
@@ -12,8 +12,8 @@ export class AuthorsService {
 
   constructor(private http: HttpClient) { }
 
-  getAuthors(): Observable<AuthorOptions[]> {
-    return this.http.get<AuthorOptions[]>(AUTHORS_ENDPOINT);
+  getAuthors(): Observable<Author[]> {
+    return this.http.get<Author[]>(AUTHORS_ENDPOINT);
   }
 
 }

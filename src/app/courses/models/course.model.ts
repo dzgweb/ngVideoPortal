@@ -1,4 +1,4 @@
-import { CourseAuthor } from './author.model';
+import { Author } from './author.model';
 
 export interface ICourse {
   id: number;
@@ -6,7 +6,7 @@ export interface ICourse {
   date: string;
   length: number;
   description: string;
-  authors?: CourseAuthor[];
+  authors?: Author[];
   isTopRated: boolean;
 }
 
@@ -17,7 +17,7 @@ export class Course implements ICourse {
     public date: string = '',
     public length: number = 0,
     public description: string = '',
-    public authors?: CourseAuthor[],
+    public authors?: Author[],
     public isTopRated: boolean = false
   ) {}
 }

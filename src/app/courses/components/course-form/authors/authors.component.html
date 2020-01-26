@@ -1,24 +1,24 @@
-
-  <div class="selected-option-box" *ngFor="let selectedOption of selectedOptions; index as i;">
+<div class="select-authors">
+  <div class="selected-option" *ngFor="let selectedOption of selectedOptions; index as i;">
     <span class="base-font">
       {{selectedOption.label}}
     </span>
-
-    <img class="remove" src="assets/img/cross.png" (click)="onOptionDeselected(i)">
+    <img class="remove" src="/assets/close.svg" (click)="onOptionDeselected(i)">
   </div>
-
 
   <input
     type="text"
     class="form-control"
-    placeholder="Start typing"
+    [placeholder]="getFilterInputPlaceholder()"
     #authorsInput
     matInput 
-    [matAutocomplete]="auto">
+    [matAutocomplete]="auto"
+    (input)="onFilterInput($event)">
 
-  <mat-autocomplete #auto="matAutocomplete">
-    <mat-option *ngFor="let option of options" [value]="option.name">
-      {{option.name}}
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+    <mat-option *ngFor="let option of getAvailableOptions()">
+      {{option.label}}
     </mat-option>
   </mat-autocomplete>
+</div>
 

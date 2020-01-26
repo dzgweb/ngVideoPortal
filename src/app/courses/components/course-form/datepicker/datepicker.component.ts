@@ -55,8 +55,6 @@ export class DatepickerComponent implements ControlValueAccessor {
 
   onInput(event) {
     this.onChanged(event.target.value);
-
-    console.log(event.target.value);
   }
 
   private onChanged = (value: string) => {};

@@ -112,8 +112,7 @@
 
       <app-authors 
         formControlName="authors"   
-        [options]="authorOptions$ | async"
-        >
+        [options]="authorOptions$ | async">
       </app-authors>
 
       <span class="error-message" *ngIf="(courseForm.get('authors').touched || courseForm.get('authors').dirty) && courseForm.get('authors').errors">

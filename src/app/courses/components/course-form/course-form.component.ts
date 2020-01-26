@@ -2,8 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 
-import { switchMap } from 'rxjs/operators';
-import { of, Subscription, Observable } from 'rxjs';
+import { tap, map } from 'rxjs/operators';
+import { Subscription, Observable } from 'rxjs';
 
 // @Ngrx
 import { Store, select } from '@ngrx/store';
@@ -23,6 +23,8 @@ export class CourseFormComponent implements OnInit, OnDestroy {
   public course: ICourse;
   private sub: Subscription;
   public authorOptions$: Observable<AuthorOptions[]>;
+
+  private authorsSourceData: Author[];
 
   courseForm = this.fb.group({
     name: ['', [Validators.required, Validators.maxLength(50)]],
@@ -59,7 +61,11 @@ export class CourseFormComponent implements OnInit, OnDestroy {
         }
       });
 
-    this.authorOptions$ = this.authorsService.getAuthors();
+    this.authorOptions$ = this.authorsService.getAuthors().pipe(
+      tap((authors: Author[]) => { this.authorsSourceData = authors; }),
+      map((authors: Author[]) => this.mapAuthorsToSelectOptions(authors)),
+      map((authors: AuthorOptions[]) => authors.sort(this.sortAuthorOptions))
+    )
   }
 
   ngOnDestroy() {
@@ -104,6 +110,14 @@ export class CourseFormComponent implements OnInit, OnDestroy {
     }));
   }
 
+  private mapSelectOptionsToAuthors(options: AuthorOptions[]): Author[] {
+    return options.map((option: AuthorOptions) => {
+      const { id, name, lastName } = this.authorsSourceData.find(author => author.id === option.id);
+
+      return new Author(id, name, lastName);
+    });
+  }
+
   private getCourse(): Course {
     const { name, description, length, date, authors } = this.courseForm.value;
 
@@ -113,8 +127,13 @@ export class CourseFormComponent implements OnInit, OnDestroy {
       date,
       length,
       description,
-      authors,
+      this.mapSelectOptionsToAuthors(authors),
       this.course.isTopRated
     );
   }
+
+  sortAuthorOptions(option1, option2): number {
+    return option1.label < option2.label ? -1 : (option1.label > option2.label ? 1 : 0);
+  }
+  
 }
