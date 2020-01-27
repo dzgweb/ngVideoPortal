@@ -17,7 +17,7 @@
         name="name"
         formControlName="name"> 
 
-        <span class="error-message" *ngIf="(courseForm.get('name').touched || courseForm.get('name').dirty) && courseForm.get('name').errors">
+        <span class="error-message" *ngIf="isInvalid('name')">
           <span *ngIf="courseForm.get('name').hasError('required')">
             Please enter a course name.
           </span>
@@ -41,7 +41,7 @@
         formControlName="description">
       </textarea>  
 
-      <span class="error-message" *ngIf="(courseForm.get('description').touched || courseForm.get('description').dirty) && courseForm.get('description').errors">
+      <span class="error-message" *ngIf="isInvalid('description')">
         <span *ngIf="courseForm.get('description').hasError('required')">
           Please enter course description.
         </span>
@@ -61,10 +61,10 @@
 
         <app-duration 
           formControlName="length"
-          [invalid]="!courseForm.get('length').valid">
+          [invalid]="isInvalid('length')">
         </app-duration>
 
-        <span class="error-message" *ngIf="(courseForm.get('length').touched || courseForm.get('length').dirty) && courseForm.get('length').errors">
+        <span class="error-message" *ngIf="isInvalid('length')">
           <span *ngIf="courseForm.get('length').hasError('required')">
             Please enter the duration.
           </span>
@@ -90,7 +90,7 @@
             [invalid]="!courseForm.get('date').valid">
           </app-datepicker>
 
-          <span class="error-message" *ngIf="(courseForm.get('date').touched || courseForm.get('date').dirty) && courseForm.get('date').errors">
+          <span class="error-message" *ngIf="isInvalid('date')">
             <span *ngIf="courseForm.get('date').hasError('required')">
               Please enter the date.
             </span>
@@ -115,7 +115,7 @@
         [options]="authorOptions$ | async">
       </app-authors>
 
-      <span class="error-message" *ngIf="(courseForm.get('authors').touched || courseForm.get('authors').dirty) && courseForm.get('authors').errors">
+      <span class="error-message" *ngIf="isInvalid('authors')">
         <span *ngIf="courseForm.get('authors').hasError('required')">
           Please enter course's authors.
         </span>

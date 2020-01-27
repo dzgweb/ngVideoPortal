@@ -65,7 +65,7 @@ export class CourseFormComponent implements OnInit, OnDestroy {
       tap((authors: Author[]) => { this.authorsSourceData = authors; }),
       map((authors: Author[]) => this.mapAuthorsToSelectOptions(authors)),
       map((authors: AuthorOptions[]) => authors.sort(this.sortAuthorOptions))
-    )
+    );
   }
 
   ngOnDestroy() {
@@ -87,6 +87,10 @@ export class CourseFormComponent implements OnInit, OnDestroy {
     } else {
       this.store.dispatch(CoursesActions.createCourse({ course }));
     }
+  }
+
+  isInvalid(fieldName: string) {
+    return (this.courseForm.get(fieldName).touched || this.courseForm.get(fieldName).dirty) && this.courseForm.get(fieldName).errors;
   }
 
   onGoBack(): void {
@@ -132,8 +136,8 @@ export class CourseFormComponent implements OnInit, OnDestroy {
     );
   }
 
-  sortAuthorOptions(option1, option2): number {
+  private sortAuthorOptions(option1, option2): number {
     return option1.label < option2.label ? -1 : (option1.label > option2.label ? 1 : 0);
   }
-  
+
 }
