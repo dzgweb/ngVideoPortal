@@ -39,24 +39,28 @@ export class DatepickerComponent implements ControlValueAccessor {
 
   constructor() { }
 
+  onInput(event): void {
+    this.onChanged(event.target.value);
+  }
+
+  onBlur(): void {
+    this.onTouched();
+  }
+
   writeValue(date: string) {
     if (date !== undefined) {
       this.value = new Date(date);
     }
   }
 
-  registerOnChange(fn: any) {
+  registerOnChange(fn: any): void {
     this.onChanged = fn;
   }
 
-  registerOnTouched(fn: any) {
+  registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }
 
-  onInput(event) {
-    this.onChanged(event.target.value);
-  }
-
-  private onChanged = (value: string) => {};
-  private onTouched = () => {};
+  private onChanged = (value: string): void => {};
+  private onTouched = (): void => {};
 }

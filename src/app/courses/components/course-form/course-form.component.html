@@ -87,7 +87,7 @@
 
           <app-datepicker 
             formControlName="date" 
-            [invalid]="!courseForm.get('date').valid">
+            [invalid]="isInvalid('date')">
           </app-datepicker>
 
           <span class="error-message" *ngIf="isInvalid('date')">

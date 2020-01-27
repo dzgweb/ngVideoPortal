@@ -18,6 +18,14 @@ export class DurationComponent implements ControlValueAccessor {
   value: number;
   @Input() invalid?: boolean;
 
+  onInput(event): void {
+    this.onChanged(event.target.value);
+  }
+
+  onBlur(): void {
+    this.onTouched();
+  }
+
   writeValue(value: number) {
     if (value !== undefined) {
       this.value = value;
@@ -28,13 +36,9 @@ export class DurationComponent implements ControlValueAccessor {
     this.onChanged = fn;
   }
 
-  registerOnTouched(fn: any) {
-    this.onTouched = fn;
-  }
-
-  onInput(event) {
-    this.onChanged(event.target.value);
-  }
+  registerOnTouched(onTouched: () => void): void {
+    this.onTouched = onTouched;
+ }
 
   private onChanged = (value: number) => {};
   private onTouched = () => {};
