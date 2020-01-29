@@ -48,7 +48,7 @@ export class DatepickerComponent implements ControlValueAccessor {
   }
 
   writeValue(date: string) {
-    if (date !== undefined) {
+    if (!!date) {
       this.value = new Date(date);
     }
   }
