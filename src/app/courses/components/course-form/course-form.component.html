@@ -1,5 +1,5 @@
 <div class="course-edit">
-  <h1>New course</h1>
+  <h1>{{pageTitle}}</h1>
   <form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
 
     <div class="form-group" 
@@ -111,9 +111,11 @@
       </div>
 
       <app-authors 
-        formControlName="authors"   
-        [options]="authorOptions$ | async">
-      </app-authors>
+        formControlName="authors"  
+        [class.invalid]="isInvalid('authors')"
+        [options]="authorOptions$ | async"
+        appAuthorsValidator
+      ></app-authors>
 
       <span class="error-message" *ngIf="isInvalid('authors')">
         <span *ngIf="courseForm.get('authors').hasError('required')">

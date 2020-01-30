@@ -22,7 +22,7 @@ export class AuthorsComponent implements ControlValueAccessor {
 
   @Input() options: AuthorOptions[];
   @ViewChild('authorsInput', {static: false}) authorsInputRef: ElementRef<HTMLInputElement>;
-  
+
   private filterText: string;
 
   constructor() { }
@@ -33,7 +33,7 @@ export class AuthorsComponent implements ControlValueAccessor {
 
   onOptionDeselected(index: number) {
     const deselectOptions = this.selectedOptions[index];
-    this.selectedOptions.splice(index, 1);    
+    this.selectedOptions.splice(index, 1);
     this.options.push(deselectOptions);
     this.onChanged(this.selectedOptions);
   }
@@ -54,22 +54,26 @@ export class AuthorsComponent implements ControlValueAccessor {
     this.onChanged(event.target.value);
   }
 
+  onBlur(): void {
+    this.onTouched();
+  }
+
   selected(event: MatAutocompleteSelectedEvent): void {
     const selectedLabel = event.option.viewValue;
     const selectedOption = this.getOption(selectedLabel);
     this.selectedOptions.push(selectedOption);
     this.onChanged(this.selectedOptions);
+    console.log(this.selectedOptions);
     this.authorsInputRef.nativeElement.blur();
   }
 
   onFilterInput(event) {
-    this.filterText = event.target.value.toLowerCase();    
+    this.filterText = event.target.value.toLowerCase();
   }
 
   getAvailableOptions() {
     return this.options ?
-      this.options.filter(option => option.label.toLowerCase().includes(this.filterText) && !this.isSelected(option)):
-      []
+      this.options.filter(option => option.label.toLowerCase().includes(this.filterText) && !this.isSelected(option)) : [];
   }
 
   private isSelected(option) {
@@ -82,5 +86,5 @@ export class AuthorsComponent implements ControlValueAccessor {
 
   private onChanged = (value: AuthorOptions[]) => {};
   private onTouched = () => {};
-  
+
 }

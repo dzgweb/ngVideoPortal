@@ -9,11 +9,12 @@
   <input
     type="text"
     class="form-control"
-    [placeholder]="getFilterInputPlaceholder()"
+    [placeholder]="getFilterInputPlaceholder()"    
     #authorsInput
     matInput 
     [matAutocomplete]="auto"
-    (input)="onFilterInput($event)">
+    (input)="onFilterInput($event)"
+    (blur)="onBlur()">
 
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
     <mat-option *ngFor="let option of getAvailableOptions()">

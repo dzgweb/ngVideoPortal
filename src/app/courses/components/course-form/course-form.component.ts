@@ -12,7 +12,7 @@ import * as CoursesActions from '../../../core/@ngrx/courses/courses.action';
 
 import { Course, ICourse, Author, AuthorOptions } from '../../models';
 import { AuthorsService } from '../../../core/services';
-import { ValidateIsNumbers } from './../../../core/validators/custom.validators';
+import { ValidateIsNumbers } from './../../../shared/validators/custom.validators';
 
 @Component({
   selector: 'app-course-form',
@@ -20,10 +20,11 @@ import { ValidateIsNumbers } from './../../../core/validators/custom.validators'
   styleUrls: ['./course-form.component.scss']
 })
 export class CourseFormComponent implements OnInit, OnDestroy {
+  public pageTitle: string;
   public course: ICourse;
-  private sub: Subscription;
   public authorOptions$: Observable<AuthorOptions[]>;
 
+  private sub: Subscription;
   private authorsSourceData: Author[];
 
   courseForm = this.fb.group({
@@ -46,10 +47,12 @@ export class CourseFormComponent implements OnInit, OnDestroy {
     this.sub = this.store.pipe(select(selectSelectedCourse))
       .subscribe (course => {
         if (course) {
+          this.pageTitle = `Edit course: ${course.name}`;
           this.course = course;
           this.setCourse(course);
         } else {
           this.course = new Course();
+          this.pageTitle = 'New course';
         }
       });
 
