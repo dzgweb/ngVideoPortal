@@ -18,7 +18,7 @@ import { UsersStoreModule } from './users/users-store.module';
     StoreModule.forRoot({}, {
       // metaReducers,
       runtimeChecks: {
-      //  strictStateImmutability: true,
+        // strictStateImmutability: true,
         strictActionImmutability: true,
         strictStateSerializability: true,
         strictActionSerializability: true

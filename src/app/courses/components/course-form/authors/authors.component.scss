@@ -1,0 +1,38 @@
+:host{
+  &.invalid{
+    .select-authors{
+      border: 1px solid red;
+    }    
+  }  
+}
+.select-authors{
+  width: 312px;
+  border-radius: 3px;
+  border: solid 1px #d9dbe3;
+  background-color: #fff;
+  padding: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  input{
+    border:none;
+    outline: none;
+    flex: 1;
+  }
+}
+.selected-option{
+  border-radius: 3px;
+  color: #6c7283;
+  font: 12px 'Source Sans Pro', sans-serif;
+  background: #f2f3f7;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 3px;
+  padding: 3px 7px 5px 12px;
+  img{
+    width: 12px;
+    height: 12px;
+    margin-left: 6px;
+    cursor: pointer;
+  }
+}

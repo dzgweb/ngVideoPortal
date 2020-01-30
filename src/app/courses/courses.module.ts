@@ -1,9 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import {MatDialogModule} from '@angular/material/dialog';
+
+import {
+  MatDialogModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatAutocompleteModule,
+  MatInputModule
+} from '@angular/material';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -17,6 +25,9 @@ import {
 } from './components';
 
 import { CoursesRoutingModule } from './courses-routing.module';
+import { DatepickerComponent } from './components/course-form/datepicker/datepicker.component';
+import { DurationComponent } from './components/course-form/duration/duration.component';
+import { AuthorsComponent } from './components/course-form/authors/authors.component';
 
 
 @NgModule({
@@ -25,17 +36,25 @@ import { CoursesRoutingModule } from './courses-routing.module';
     CourseComponent,
     CourseFormComponent,
     CourseSearchComponent,
-    CourseDeleteModalComponent
+    CourseDeleteModalComponent,
+    DatepickerComponent,
+    DurationComponent,
+    AuthorsComponent
   ],
   imports: [
     CommonModule,
     HttpClientModule,
     RouterModule,
     FormsModule,
+    ReactiveFormsModule,
     FontAwesomeModule,
     SharedModule,
     CoursesRoutingModule,
-    MatDialogModule
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatAutocompleteModule,
+    MatInputModule
   ],
   entryComponents: [CourseDeleteModalComponent],
   exports: []

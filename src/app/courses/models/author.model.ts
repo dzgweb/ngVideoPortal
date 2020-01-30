@@ -4,7 +4,7 @@ export interface IAuthor {
   lastName: string;
 }
 
-export class CourseAuthor implements IAuthor {
+export class Author implements IAuthor {
   constructor(
     public id: number,
     public name: string,

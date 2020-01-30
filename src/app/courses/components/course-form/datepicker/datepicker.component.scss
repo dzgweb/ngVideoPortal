@@ -1,0 +1,10 @@
+:host{
+  position: relative;
+}
+input.invalid{
+  border: 1px solid red;
+}
+.mat-datepicker-toggle{
+  position: absolute;
+  right: 2px;
+}
